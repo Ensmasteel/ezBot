@@ -1,2 +1,3 @@
-# ezbot
-This is the repository of the new Holonomic robot, called ezbot, of EnsmaSteel for the Coupe de France de Robotique
+# ezBot
+
+ezBot is the name of the future holonmic robot for ENSMASTEEL. It will probably run on ROS2.
