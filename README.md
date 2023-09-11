@@ -9,4 +9,4 @@ On this repository you will find 4 individual branches :
 - `catia` for the cad files of our robot (CATIA V5-6R2018)
 - `ezBot-ROS_ws` the ROS2 workspace folder for all of our ROS2 packages.
 
-![Competition Table](resources/Eurobot2024_Rules_CUP_BETA_Image/3.png)
+![Competition Table](resources/Eurobot2024_Rules_CUP_FR_BETA_Images/3.png)
