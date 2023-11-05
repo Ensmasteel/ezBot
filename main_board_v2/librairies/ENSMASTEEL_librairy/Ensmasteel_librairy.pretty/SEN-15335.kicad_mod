@@ -45,9 +45,19 @@
   (pad "10" thru_hole circle (at 11.43 -3.81) (size 1.524 1.524) (drill 0.762) (layers "*.Cu" "*.Mask") (tstamp 0cc23145-2882-40f2-8937-27d9fa01a661))
   (pad "11" thru_hole circle (at -11.43 -6.35) (size 1.524 1.524) (drill 0.762) (layers "*.Cu" "*.Mask") (tstamp ae019432-cec7-435b-84a9-f226685cdf84))
   (pad "12" thru_hole circle (at 11.43 -6.35) (size 1.524 1.524) (drill 0.762) (layers "*.Cu" "*.Mask") (tstamp f1047ebc-b459-4179-a903-86543cd00252))
-  (model "C:/Users/Vincent/Desktop/ENSMASTEEL/2023-2024/ezBot/ENSMASTEEL_librairy/3dModels/SparkFun_IMU_Breakout_ICM-20948 v4.iges"
-    (offset (xyz -12.7 12.75 0))
+  (model "${KIPRJMOD}/librairies/ENSMASTEEL_librairy/3dModels/SparkFun_IMU_Breakout_ICM-20948 v4.iges"
+    (offset (xyz -12.7 12.75 6.5))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 90))
+  )
+  (model "${KIPRJMOD}/librairies/ENSMASTEEL_librairy/3dModels/pinheaders/female single row/6-Pin Header - Female - 2.54mm.step"
+    (offset (xyz 11.42 6.35 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz -90 0 90))
+  )
+  (model "${KIPRJMOD}/librairies/ENSMASTEEL_librairy/3dModels/pinheaders/female single row/6-Pin Header - Female - 2.54mm.step"
+    (offset (xyz -11.42 6.35 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz -90 0 90))
   )
 )
