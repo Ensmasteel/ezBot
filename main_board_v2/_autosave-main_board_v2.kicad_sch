@@ -4649,7 +4649,7 @@
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 494.03 182.88 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 05648088-00a0-44c7-af76-a6178e0d7eaa)
-    (property "Reference" "Servo5" (at 493.395 190.5 0)
+    (property "Reference" "Servo3" (at 493.395 190.5 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1x3_PinHeader" (at 493.395 187.96 0)
@@ -4667,7 +4667,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "Servo5") (unit 1)
+          (reference "Servo3") (unit 1)
         )
       )
     )
@@ -4836,7 +4836,7 @@
   (symbol (lib_id "power:+5V") (at 394.97 36.83 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 0bdb343e-4a90-4dc6-aaf5-ba22998719c4)
-    (property "Reference" "#PWR040" (at 394.97 40.64 0)
+    (property "Reference" "#PWR042" (at 394.97 40.64 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 394.97 31.75 0)
@@ -4852,7 +4852,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR040") (unit 1)
+          (reference "#PWR042") (unit 1)
         )
       )
     )
@@ -4861,7 +4861,7 @@
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 524.51 158.75 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 0ee421de-d043-4c66-b1f0-6aca13911db0)
-    (property "Reference" "Servo4" (at 523.875 166.37 0)
+    (property "Reference" "Servo8" (at 523.875 166.37 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1x3_PinHeader" (at 523.875 163.83 0)
@@ -4879,7 +4879,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "Servo4") (unit 1)
+          (reference "Servo8") (unit 1)
         )
       )
     )
@@ -5538,7 +5538,7 @@
   (symbol (lib_id "power:GND") (at 384.81 209.55 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 420d2a8c-f5d7-4c3c-a658-af743156fb93)
-    (property "Reference" "#PWR042" (at 384.81 215.9 0)
+    (property "Reference" "#PWR040" (at 384.81 215.9 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 384.81 214.63 0)
@@ -5554,7 +5554,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR042") (unit 1)
+          (reference "#PWR040") (unit 1)
         )
       )
     )
@@ -5653,7 +5653,7 @@
   (symbol (lib_id "power:+3.3V") (at 224.79 245.11 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 47a3abcf-30b3-4490-af09-f9986b58b889)
-    (property "Reference" "#PWR021" (at 224.79 248.92 0)
+    (property "Reference" "#PWR027" (at 224.79 248.92 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3.3V" (at 224.79 240.03 0)
@@ -5669,7 +5669,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR021") (unit 1)
+          (reference "#PWR027") (unit 1)
         )
       )
     )
@@ -5678,7 +5678,7 @@
   (symbol (lib_id "Connector:Conn_01x17_Pin") (at 547.37 63.5 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 47dd3c94-e4a1-49f8-9b2d-9cfc28b9eb14)
-    (property "Reference" "expansion" (at 548.64 62.23 0)
+    (property "Reference" "expansion1" (at 548.64 62.23 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "Conn_01x17_Pin" (at 548.64 64.77 0)
@@ -5710,7 +5710,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "expansion") (unit 1)
+          (reference "expansion1") (unit 1)
         )
       )
     )
@@ -5858,7 +5858,7 @@
   (symbol (lib_id "power:GND") (at 537.21 35.56 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5aecbb6a-75c0-4235-91dc-9ec43c84e755)
-    (property "Reference" "#PWR073" (at 543.56 35.56 0)
+    (property "Reference" "#PWR074" (at 543.56 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 541.02 35.56 0)
@@ -5874,7 +5874,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR073") (unit 1)
+          (reference "#PWR074") (unit 1)
         )
       )
     )
@@ -5993,7 +5993,7 @@
   (symbol (lib_id "power:GND") (at 389.89 143.51 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5e911e31-a28c-42b0-9195-6316e12a0501)
-    (property "Reference" "#PWR043" (at 389.89 149.86 0)
+    (property "Reference" "#PWR041" (at 389.89 149.86 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 389.89 148.59 0)
@@ -6009,7 +6009,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR043") (unit 1)
+          (reference "#PWR041") (unit 1)
         )
       )
     )
@@ -6224,7 +6224,7 @@
   (symbol (lib_id "power:GND") (at 223.52 135.89 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 659a0aba-890c-45d0-95d5-702991d14a5c)
-    (property "Reference" "#PWR026" (at 223.52 142.24 0)
+    (property "Reference" "#PWR024" (at 223.52 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 227.33 138.43 0)
@@ -6240,7 +6240,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR026") (unit 1)
+          (reference "#PWR024") (unit 1)
         )
       )
     )
@@ -6568,7 +6568,7 @@
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 524.51 182.88 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 76774cfe-f998-4ed9-8cd4-4e1b5b87a2c0)
-    (property "Reference" "Servo6" (at 523.875 190.5 0)
+    (property "Reference" "Servo9" (at 523.875 190.5 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1x3_PinHeader" (at 523.875 187.96 0)
@@ -6586,7 +6586,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "Servo6") (unit 1)
+          (reference "Servo9") (unit 1)
         )
       )
     )
@@ -6621,7 +6621,7 @@
   (symbol (lib_id "power:+5VP") (at 223.52 113.03 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7a20a489-b07c-48d5-9561-d19fff825666)
-    (property "Reference" "#PWR025" (at 223.52 116.84 0)
+    (property "Reference" "#PWR023" (at 223.52 116.84 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5VP" (at 223.52 107.95 0)
@@ -6637,7 +6637,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR025") (unit 1)
+          (reference "#PWR023") (unit 1)
         )
       )
     )
@@ -6738,7 +6738,7 @@
   (symbol (lib_id "power:GND") (at 525.78 107.95 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7de86d2e-a609-42ba-bc14-4a364dd721f1)
-    (property "Reference" "#PWR074" (at 525.78 114.3 0)
+    (property "Reference" "#PWR073" (at 525.78 114.3 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 529.59 110.49 0)
@@ -6754,7 +6754,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR074") (unit 1)
+          (reference "#PWR073") (unit 1)
         )
       )
     )
@@ -6813,7 +6813,7 @@
   (symbol (lib_id "power:GND") (at 394.97 50.8 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 81729483-f1e3-40ed-b9f1-ea91dcd4fa1a)
-    (property "Reference" "#PWR041" (at 394.97 57.15 0)
+    (property "Reference" "#PWR043" (at 394.97 57.15 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 394.97 54.61 0)
@@ -6829,7 +6829,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR041") (unit 1)
+          (reference "#PWR043") (unit 1)
         )
       )
     )
@@ -6838,7 +6838,7 @@
   (symbol (lib_id "power:+7.5V") (at 223.52 69.85 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 81bc9fcd-58c0-44cd-914a-c5952f129165)
-    (property "Reference" "#PWR023" (at 223.52 73.66 0)
+    (property "Reference" "#PWR021" (at 223.52 73.66 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+7.5V" (at 223.52 64.77 0)
@@ -6854,7 +6854,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR023") (unit 1)
+          (reference "#PWR021") (unit 1)
         )
       )
     )
@@ -6863,7 +6863,7 @@
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 525.78 214.63 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 836e9174-66b3-40ef-b31a-214d1d37a395)
-    (property "Reference" "Servo8" (at 525.145 222.25 0)
+    (property "Reference" "Servo10" (at 525.145 222.25 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1x3_PinHeader" (at 525.145 219.71 0)
@@ -6881,7 +6881,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "Servo8") (unit 1)
+          (reference "Servo10") (unit 1)
         )
       )
     )
@@ -6921,7 +6921,7 @@
   (symbol (lib_id "power:+5V") (at 224.79 31.75 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 88941d7e-f22b-4d30-a2ef-ebf8ef658be9)
-    (property "Reference" "#PWR027" (at 224.79 35.56 0)
+    (property "Reference" "#PWR025" (at 224.79 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 224.79 26.67 0)
@@ -6937,7 +6937,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR027") (unit 1)
+          (reference "#PWR025") (unit 1)
         )
       )
     )
@@ -7022,7 +7022,7 @@
   (symbol (lib_id "power:GND") (at 223.52 92.71 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8c8c6cb2-0d03-4817-ba32-93a08b8604ea)
-    (property "Reference" "#PWR024" (at 223.52 99.06 0)
+    (property "Reference" "#PWR022" (at 223.52 99.06 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 227.33 95.25 0)
@@ -7038,7 +7038,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR024") (unit 1)
+          (reference "#PWR022") (unit 1)
         )
       )
     )
@@ -7360,7 +7360,7 @@
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 524.51 134.62 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ac7c1abb-6d8f-48f6-a565-928ebd999e88)
-    (property "Reference" "Servo2" (at 523.875 142.24 0)
+    (property "Reference" "Servo7" (at 523.875 142.24 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1x3_PinHeader" (at 523.875 139.7 0)
@@ -7378,7 +7378,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "Servo2") (unit 1)
+          (reference "Servo7") (unit 1)
         )
       )
     )
@@ -7387,7 +7387,7 @@
   (symbol (lib_id "power:GND") (at 224.79 262.89 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ac9b0ad8-2d9e-4d14-9475-89904a5ba6e4)
-    (property "Reference" "#PWR022" (at 224.79 269.24 0)
+    (property "Reference" "#PWR028" (at 224.79 269.24 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 228.6 265.43 0)
@@ -7403,7 +7403,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR022") (unit 1)
+          (reference "#PWR028") (unit 1)
         )
       )
     )
@@ -7565,7 +7565,7 @@
   (symbol (lib_id "power:GND") (at 224.79 49.53 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b8aaa82b-9a83-441a-963e-c86f495f5024)
-    (property "Reference" "#PWR028" (at 224.79 55.88 0)
+    (property "Reference" "#PWR026" (at 224.79 55.88 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 228.6 52.07 0)
@@ -7581,7 +7581,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "#PWR028") (unit 1)
+          (reference "#PWR026") (unit 1)
         )
       )
     )
@@ -7730,7 +7730,7 @@
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 525.78 238.76 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c9c447c4-ca91-4f1d-ab6f-5694a67ac446)
-    (property "Reference" "Servo10" (at 525.145 246.38 0)
+    (property "Reference" "Servo11" (at 525.145 246.38 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1x3_PinHeader" (at 525.145 243.84 0)
@@ -7748,7 +7748,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "Servo10") (unit 1)
+          (reference "Servo11") (unit 1)
         )
       )
     )
@@ -7818,7 +7818,7 @@
   (symbol (lib_id "Isolator:4N35") (at 210.82 248.92 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid d83b13ed-373f-4745-b423-66f8b820436e)
-    (property "Reference" "U4" (at 210.82 240.03 0)
+    (property "Reference" "U1" (at 210.82 240.03 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "4N35" (at 210.82 242.57 0)
@@ -7839,7 +7839,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "U4") (unit 1)
+          (reference "U1") (unit 1)
         )
       )
     )
@@ -8151,7 +8151,7 @@
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 494.03 158.75 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f2197c6a-4d57-41ad-99ba-0210ec64ffc2)
-    (property "Reference" "Servo3" (at 493.395 166.37 0)
+    (property "Reference" "Servo2" (at 493.395 166.37 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1x3_PinHeader" (at 493.395 163.83 0)
@@ -8169,7 +8169,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "Servo3") (unit 1)
+          (reference "Servo2") (unit 1)
         )
       )
     )
@@ -8242,7 +8242,7 @@
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 495.3 214.63 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f74a9416-e1eb-4727-8b36-2845ced49b26)
-    (property "Reference" "Servo7" (at 494.665 222.25 0)
+    (property "Reference" "Servo4" (at 494.665 222.25 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1x3_PinHeader" (at 494.665 219.71 0)
@@ -8260,7 +8260,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "Servo7") (unit 1)
+          (reference "Servo4") (unit 1)
         )
       )
     )
@@ -8350,7 +8350,7 @@
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 495.3 238.76 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid fc7698f3-883e-441b-97cd-acb487ec77d4)
-    (property "Reference" "Servo9" (at 494.665 246.38 0)
+    (property "Reference" "Servo5" (at 494.665 246.38 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1x3_PinHeader" (at 494.665 243.84 0)
@@ -8368,7 +8368,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "Servo9") (unit 1)
+          (reference "Servo5") (unit 1)
         )
       )
     )
@@ -8377,7 +8377,7 @@
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 495.3 262.89 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ff4bbe7d-2282-421d-a4b8-599ed6b4c32f)
-    (property "Reference" "Servo11" (at 494.665 270.51 0)
+    (property "Reference" "Servo6" (at 494.665 270.51 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1x3_PinHeader" (at 494.665 267.97 0)
@@ -8395,7 +8395,7 @@
     (instances
       (project "main_board_v2"
         (path "/a3165b16-5a7e-463d-a281-81f6c6cd79c7"
-          (reference "Servo11") (unit 1)
+          (reference "Servo6") (unit 1)
         )
       )
     )
