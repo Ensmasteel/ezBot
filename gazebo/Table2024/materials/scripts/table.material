@@ -1,0 +1,14 @@
+material tableMat/Diffuse
+{
+	receive_shaddows off
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture table.png
+			}
+		}
+	}
+}
