@@ -42,7 +42,7 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
-    <model name='Table_2023_v2'>
+    <model name='Table_2024'>
       <static>1</static>
       <link name='link_0'>
         <gravity>0</gravity>
@@ -147,7 +147,7 @@
       <real_time>255 894694991</real_time>
       <wall_time>1700838315 768903318</wall_time>
       <iterations>250845</iterations>
-      <model name='Table_2023_v2'>
+      <model name='Table_2024'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link_0'>
