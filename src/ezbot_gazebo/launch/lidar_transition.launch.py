@@ -1,18 +1,3 @@
-# Copyright 2022 Walter Lucetti
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-###########################################################################
-
 import os
 import launch
 
@@ -24,7 +9,8 @@ from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node, LifecycleNode
 
 from launch_ros.events.lifecycle import ChangeState
-from launch_ros.event_handlers import OnStateTransition
+# used if we want to wait for one of the transition to complete
+# from launch_ros.event_handlers import OnStateTransition 
 from launch.events import matches_action
 
 import lifecycle_msgs.msg
@@ -91,6 +77,8 @@ def generate_launch_description():
         )
     )
 
+
+    # switch lidar node to activate state
     lidar_activate_trans_event = EmitEvent(
         event=ChangeState(
             lifecycle_node_matcher = matches_action(ldlidar_node),
@@ -110,7 +98,11 @@ def generate_launch_description():
 
     # LDLidar Lifecycle node
     ld.add_action(ldlidar_node)
+
+    # Emit events to transition the nodes to the configure state
     ld.add_action(lidar_configure_trans_event)
+
+    # Emit events to transition the nodes to the active state
     ld.add_action(lidar_activate_trans_event)
     
     return ld
