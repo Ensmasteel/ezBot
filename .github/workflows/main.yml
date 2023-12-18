@@ -1,4 +1,4 @@
-- name: ROS 2 Workspace Action
+name: ROS 2 Workspace Action
 # You may pin to the exact commit or the version.
 uses: ichiro-its/ros2-ws-action@v1.0.1
 with:
