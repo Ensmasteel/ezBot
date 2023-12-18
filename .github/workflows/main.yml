@@ -22,4 +22,4 @@ jobs:
           ros-distro: humble
 
       - name: Build workspace
-        run: ./opt/ros/humble/setup.bash
+        run: /bin/bash /opt/ros/humble/setup.bash
