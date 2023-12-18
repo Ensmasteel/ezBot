@@ -1,6 +1,5 @@
 - name: ROS 2 Workspace Action
 # You may pin to the exact commit or the version.
-# uses: ichiro-its/ros2-ws-action@3f3a5538f7a7b1794c976c660d446deef2e2ca9f
 uses: ichiro-its/ros2-ws-action@v1.0.1
 with:
   # The ROS 2 distribution to be used
