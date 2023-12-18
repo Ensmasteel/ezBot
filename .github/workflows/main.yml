@@ -13,14 +13,8 @@ jobs:
     container:
       image: ubuntu:jammy
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up ROS
-        uses: ros-tooling/setup-ros@v0.7
-        with:
-          required-ros-distributions: humble
-
-      - name: Build workspace
-        run: sudo apt-get update & sudo apt-get -y install ament-cmake &&\
-              /bin/bash /opt/ros/humble/setup.bash && colcon build
+    -   name: ROS industrial_ci
+      # You may pin to the exact commit or the version.
+      # uses: 2lambda123/industrial_ci@1425bd2140a5cad7c7b831e43c443336783cc449
+      uses: 2lambda123/industrial_ci@0.10.0
+          
