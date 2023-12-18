@@ -5,12 +5,15 @@ on:
       - ezBot-ROS_ws
 jobs:
   build-and-test:
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checking out
-        uses: actions/checkout@v2.3.4
-      - name: Building and testing
-        uses: ichiro-its/ros2-ci@v1.0.0
+      - name: Checkout
+        uses: actions/checkout@v4.0.0
         with:
-          ros2-distro: humble
-          apt-packages: gazebo_dev
+          path: workspace
+
+      - name: Build and test workspace
+        uses: ichiro-its/ros2-ws-action@v1.0.0
+        with:
+          distro: rolling
