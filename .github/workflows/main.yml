@@ -22,4 +22,5 @@ jobs:
           required-ros-distributions: humble
 
       - name: Build workspace
-        run: /bin/bash /opt/ros/humble/setup.bash && colcon build
+        run: sudo apt-get update & sudo apt-get -y install ament-cmake & \
+              /bin/bash /opt/ros/humble/setup.bash && colcon build
