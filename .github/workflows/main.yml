@@ -19,7 +19,7 @@ jobs:
       - name: Set up ROS
         uses: ros-tooling/setup-ros@v0.7
         with:
-          ros-distro: humble
+          required-ros-distributions: humble
 
       - name: Build workspace
         run: /bin/bash /opt/ros/humble/setup.bash
