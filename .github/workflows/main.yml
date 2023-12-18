@@ -22,4 +22,4 @@ jobs:
           ros-distro: humble
 
       - name: Build workspace
-        run: source /opt/ros/humble/setup.bash & colcon build
+        run: source /opt/ros/humble/setup.bash
