@@ -17,7 +17,7 @@ def generate_launch_description():
     # Include the robot_state_publisher launch file, provided by our own package. Force sim time to be enabled
     # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
 
-    package_name='my_bot' #<--- CHANGE ME
+    package_name='ezbot_descr_simul' #<--- CHANGE ME
 
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
