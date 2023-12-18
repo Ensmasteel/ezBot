@@ -17,7 +17,9 @@ jobs:
         with:
           required-ros-distributions: humble
       - run: "source /opt/ros/humble/setup.bash && ros2 run --help"
+        shell: bash
       - run: "source /opt/ros/noetic/setup.bash && rosnode --help"
+        shell: bash
       - uses: ros-tooling/action-ros-ci@v0.3
         with:
           package-name: my_package
