@@ -3,9 +3,7 @@ name: ROS 2 Workspace Action v2
 # uses: ros/tooling-setup-actions/setup-ros@v1
 
 on:
-  push:
-    branches:
-      - ezBot-ROS_ws
+  workflow_dispatch:
 
 jobs:
   build:
