@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <xacro:include filename="inertial_macros.xacro" />
+
+
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+
+    <link name="base_link">
+    
+    </link>
+
+    <!--Chassis-->
+
+    <joint name= "chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="-0.1 0 0"/>
+    </joint>
+
+    <link name="chassis">
+        <visual>
+            <origin xyz="0.55 0 0.3"/>
+            <geometry>
+                <box size="1.1 1.1 0.6"/>
+            </geometry>
+            <material name="orange"/>
+        </visual>
+        <collision>
+            <origin xyz="0.55 0 0.3"/>
+            <geometry>
+                <box size="1.1 1.1 0.6"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="1.1" y="1.1" z="0.6">
+            <origin xyz="0.55 0 0.3" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="chassis">
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+    <!--bloc avant-->
+
+    <joint name= "bloc_avant_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="bloc_avant"/>
+        <origin xyz="1.1 0 0"/>
+    </joint>
+
+    <link name="bloc_avant">
+        <visual>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.8" y="0.8" z="0.6">
+            <origin xyz="0.4 0 0.3" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="bloc_avant">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <!--bloc arriere-->
+
+    <joint name= "bloc_arriere_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="bloc_arriere"/>
+        <origin xyz="-0.8 0 0"/>
+    </joint>
+
+    <link name="bloc_arriere">
+        <visual>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.8" y="0.8" z="0.6">
+            <origin xyz="0.4 0 0.3" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="bloc_arriere">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <!--bloc gauche-->
+
+    <joint name= "bloc_gauche_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="bloc_gauche"/>
+        <origin xyz="0.15 0.95 0"/>
+    </joint>
+
+    <link name="bloc_gauche">
+        <visual>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.8" y="0.8" z="0.6">
+            <origin xyz="0.4 0 0.3" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="bloc_gauche">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <!--bloc droit-->
+
+    <joint name= "bloc_droit_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="bloc_droit"/>
+        <origin xyz="0.15 -0.95 0"/>
+    </joint>
+
+    <link name="bloc_droit">
+        <visual>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <origin xyz="0.4 0 0.3"/>
+            <geometry>
+                <box size="0.8 0.8 0.6"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.8" y="0.8" z="0.6">
+            <origin xyz="0.4 0 0.3" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="bloc_droit">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+    <!--roue droite-->
+
+    <joint name= "roue_droite_joint" type="continuous">
+        <parent link="bloc_droit"/>
+        <child link="roue_droite"/>
+        <origin xyz="0.4 -0.5 0.2" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+
+    <link name='roue_droite'>    
+        <visual>  
+            <material name="blue"/>
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </visual>
+        <collision>  
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" radius="0.3" length="0.2">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="roue_droite">
+        <material>Gazebo/Blue</material>
+        <!--Have friction only along the way it rotates-->
+        <fdir1>1 0 0</fdir1>
+        <mu1>1.0</mu1>
+        <mu2>0.1</mu2>
+    </gazebo>
+
+    <!--roue gauche-->
+
+    <joint name= "roue_gauche_joint" type="continuous">
+        <parent link="bloc_gauche"/>
+        <child link="roue_gauche"/>
+        <origin xyz="0.4 0.5 0.2" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+
+    <link name='roue_gauche'>    
+        <visual>  
+            <material name="blue"/>
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </visual>
+        <collision>  
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" radius="0.3" length="0.2">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="roue_gauche">
+        <material>Gazebo/White</material>
+        <!--Have friction only along the way it rotates-->
+        <fdir1>1 0 0</fdir1>
+        <mu1>1.0</mu1>
+        <mu2>0.1</mu2>
+    </gazebo>
+
+    <!--roue avant-->
+
+    <joint name= "roue_avant_joint" type="continuous">
+        <parent link="bloc_avant"/>
+        <child link="roue_avant"/>  
+        <origin xyz="0.9 0 0.2" rpy="0 ${pi/2} 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+
+    <link name='roue_avant'>    
+        <visual>  
+            <material name="blue"/>
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </visual>
+        <collision>  
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" radius="0.3" length="0.2">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="roue_avant">
+        <material>Gazebo/Blue</material>
+        <fdir1>1 0 0</fdir1>
+        <mu1>1.0</mu1>
+        <mu2>0.1</mu2>
+    </gazebo>
+
+    <!--roue arriere-->
+
+    <joint name= "roue_arriere_joint" type="continuous">
+        <parent link="bloc_arriere"/>
+        <child link="roue_arriere"/>
+        <origin xyz="-0.1 0 0.2" rpy="0 ${pi/2} 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+
+    <link name='roue_arriere'>    
+        <visual>  
+            <material name="blue"/>
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </visual>
+        <collision>  
+            <geometry>
+                <cylinder radius="0.3" length="0.2"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" radius="0.3" length="0.2">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+
+    <gazebo reference="roue_arriere">
+        <material>Gazebo/Blue</material>
+        <fdir1>1 0 0</fdir1>
+        <mu1>1.0</mu1>
+        <mu2>0.1</mu2>
+    </gazebo>
+
+
+</robot>
