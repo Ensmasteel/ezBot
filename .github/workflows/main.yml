@@ -22,4 +22,4 @@ jobs:
           required-ros-distributions: humble
 
       - name: Build workspace
-        run: /bin/bash /opt/ros/humble/setup.bash
+        run: /bin/bash /opt/ros/humble/setup.bash && colcon build
