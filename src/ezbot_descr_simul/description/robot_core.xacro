@@ -247,10 +247,6 @@
 
     <gazebo reference="roue_gauche">
         <material>Gazebo/Blue</material>
-<<<<<<< HEAD
-=======
-        <!--Have friction only along the way it rotates-->
->>>>>>> 373c306d8c1b4496723604ba9328db8834d41ac4
         <fdir1>1 0 0</fdir1>
         <mu1>1.0</mu1>
         <mu2>0.1</mu2>
