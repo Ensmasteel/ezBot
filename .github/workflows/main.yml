@@ -1,4 +1,4 @@
-name: ROS 2 Workspace Action
+name: Humble Source Build
 # You may pin to the exact commit or the version.
 # uses: ros/tooling-setup-actions/setup-ros@v1
 
@@ -8,13 +8,17 @@ on:
       - ezBot-ROS_ws
 
 jobs:
-  build:
+  build_docker:
     runs-on: ubuntu-latest
     container:
       image: ubuntu:jammy
     steps:
-    -   name: ROS industrial_ci
-      # You may pin to the exact commit or the version.
-      # uses: 2lambda123/industrial_ci@1425bd2140a5cad7c7b831e43c443336783cc449
-      uses: 2lambda123/industrial_ci@0.10.0
-          
+      - uses: ros-tooling/setup-ros@v0.7
+        with:
+          required-ros-distributions: humble
+      - run: "source /opt/ros/humble/setup.bash && ros2 run --help"
+      - run: "source /opt/ros/noetic/setup.bash && rosnode --help"
+      - uses: ros-tooling/action-ros-ci@v0.3
+        with:
+          package-name: my_package
+          target-ros2-distro: humble
