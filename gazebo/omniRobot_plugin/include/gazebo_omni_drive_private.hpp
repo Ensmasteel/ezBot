@@ -35,171 +35,171 @@
 
 namespace gazebo_omni_drive_plugins
 {
-  class GazeboOmniRosDrivePrivate
+class GazeboOmniRosDrivePrivate
+{
+  public:
+
+  /// Indicates which wheel
+  enum
   {
-    public:
+    NORTH = 0,  //left rear
+    WEST = 1,   //left front
+    SOUTH = 2,  //right front
+    EAST = 3,   //right rear
+  };
   
-    /// Indicates which wheel
-    enum
-    {
-      NORTH = 0,  //left rear
-      WEST = 1,   //left front
-      SOUTH = 2,  //right front
-      EAST = 3,   //right rear
-    };
-    
-    /// Callback to be called at every simulation iteration.
-    /// \param[in] _info Updated simulation info.
-    void OnUpdate(const gazebo::common::UpdateInfo & _info);
+  /// Callback to be called at every simulation iteration.
+  /// \param[in] _info Updated simulation info.
+  void OnUpdate(const gazebo::common::UpdateInfo & _info);
 
-    /// Callback when a velocity command is received.
-    /// \param[in] _msg Twist command message.
-    void OnCmdVel(const geometry_msgs::msg::Twist::SharedPtr _msg);
+  /// Callback when a velocity command is received.
+  /// \param[in] _msg Twist command message.
+  void OnCmdVel(const geometry_msgs::msg::Twist::SharedPtr _msg);
 
-    /// Update wheel velocities according to latest target velocities.
-    void UpdateWheelVelocities();
+  /// Update wheel velocities according to latest target velocities.
+  void UpdateWheelVelocities();
 
-    /// Publish odometry transforms
-    /// \param[in] _current_time Current simulation time
-    void PublishOdometryTf(const gazebo::common::Time & _current_time);
+  /// Publish odometry transforms
+  /// \param[in] _current_time Current simulation time
+  void PublishOdometryTf(const gazebo::common::Time & _current_time);
 
-    /// Publish trasforms for the wheels
-    /// \param[in] _current_time Current simulation time
-    void PublishWheelsTf(const gazebo::common::Time & _current_time);
+  /// Publish trasforms for the wheels
+  /// \param[in] _current_time Current simulation time
+  void PublishWheelsTf(const gazebo::common::Time & _current_time);
 
-    /// Publish odometry messages
-    /// \param[in] _current_time Current simulation time
-    void PublishOdometryMsg(const gazebo::common::Time & _current_time);
+  /// Publish odometry messages
+  /// \param[in] _current_time Current simulation time
+  void PublishOdometryMsg(const gazebo::common::Time & _current_time);
 
-    /// A pointer to the GazeboROS node.
-    gazebo_ros::Node::SharedPtr ros_node_;
+  /// A pointer to the GazeboROS node.
+  gazebo_ros::Node::SharedPtr ros_node_;
 
-    /// Subscriber to command velocities
-    rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_sub_;
+  /// Subscriber to command velocities
+  rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_sub_;
 
-    /// Odometry publisher
-    rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odometry_pub_;
+  /// Odometry publisher
+  rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odometry_pub_;
 
-    /// Connection to event called at every world iteration.
-    gazebo::event::ConnectionPtr update_connection_;
+  /// Connection to event called at every world iteration.
+  gazebo::event::ConnectionPtr update_connection_;
 
-    /// Distance between the wheels, in meters.
-    std::vector<double> wheel_w_separation_;
-    std::vector<double> wheel_l_separation_;
+  /// Distance between the wheels, in meters.
+  std::vector<double> wheel_w_separation_;
+  std::vector<double> wheel_l_separation_;
 
-    /// Diameter of wheels, in meters.
-    std::vector<double> wheel_diameter_;
+  /// Diameter of wheels, in meters.
+  std::vector<double> wheel_diameter_;
 
-    /// Maximum wheel torque, in Nm.
-    double max_wheel_torque_;
+  /// Maximum wheel torque, in Nm.
+  double max_wheel_torque_;
 
-    /// Maximum wheel acceleration
-    double max_wheel_accel_;
+  /// Maximum wheel acceleration
+  double max_wheel_accel_;
 
-    /// Desired wheel speed.
-    std::vector<double> desired_wheel_speed_;
+  /// Desired wheel speed.
+  std::vector<double> desired_wheel_speed_;
 
-    /// Speed sent to wheel.
-    std::vector<double> wheel_speed_instr_;// Unless required by applicable law or agreed to in writing, software
+  /// Speed sent to wheel.
+  std::vector<double> wheel_speed_instr_;// Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
 
-    /// Pointers to wheel joints.
-    std::vector<gazebo::physics::JointPtr> joints_;
+  /// Pointers to wheel joints.
+  std::vector<gazebo::physics::JointPtr> joints_;
 
-    /// Pointer to model.
-    gazebo::physics::ModelPtr model_;
+  /// Pointer to model.
+  gazebo::physics::ModelPtr model_;
 
-    /// To broadcast TFs
-    std::shared_ptr<tf2_ros::TransformBroadcaster> transform_broadcaster_;
+  /// To broadcast TFs
+  std::shared_ptr<tf2_ros::TransformBroadcaster> transform_broadcaster_;
 
-    /// Protect variables accessed on callbacks.
-    std::mutex lock_;
+  /// Protect variables accessed on callbacks.
+  std::mutex lock_;
 
-    /// Linear velocity in X received on command (m/s).
-    double target_x_{0.0};
+  /// Linear velocity in X received on command (m/s).
+  double target_x_{0.0};
 
-    /// Linear velocity in Y received on command (m/s).
-    double target_y_{0.0};
+  /// Linear velocity in Y received on command (m/s).
+  double target_y_{0.0};
 
-    /// Angular velocity in Z received on command (rad/s).
-    double target_rot_{0.0};
+  /// Angular velocity in Z received on command (rad/s).
+  double target_rot_{0.0};
 
-    /// Update period in seconds.
-    double update_period_;
+  /// Update period in seconds.
+  double update_period_;
 
-    /// Last update time.
-    gazebo::common::Time last_update_time_;
+  /// Last update time.
+  gazebo::common::Time last_update_time_;
 
-    /// Keep encoder data.
-    geometry_msgs::msg::Pose2D pose_encoder_;
+  /// Keep encoder data.
+  geometry_msgs::msg::Pose2D pose_encoder_;
 
-    /// Odometry frame ID
-    std::string odometry_frame_;
+  /// Odometry frame ID
+  std::string odometry_frame_;
 
-    /// Odometry topic
-    std::string odometry_topic_;
+  /// Odometry topic
+  std::string odometry_topic_;
 
-    /// cmd topic
-    std::string cmd_topic_;
+  /// cmd topic
+  std::string cmd_topic_;
 
-    /// Last time the encoder was updated
-    gazebo::common::Time last_encoder_update_;
+  /// Last time the encoder was updated
+  gazebo::common::Time last_encoder_update_;
 
-    /// Keep latest odometry message
-    nav_msgs::msg::Odometry odom_;
+  /// Keep latest odometry message
+  nav_msgs::msg::Odometry odom_;
 
-    /// Robot base frame ID
-    std::string robot_base_frame_;
+  /// Robot base frame ID
+  std::string robot_base_frame_;
 
-    /// True to publish odometry messages.
-    bool publish_odom_;
+  /// True to publish odometry messages.
+  bool publish_odom_;
 
-    /// True to publish wheel-to-base transforms.
-    bool publish_wheel_tf_;
+  /// True to publish wheel-to-base transforms.
+  bool publish_wheel_tf_;
 
-    /// True to publish odom-to-world transforms.
-    bool publish_odom_tf_;
+  /// True to publish odom-to-world transforms.
+  bool publish_odom_tf_;
 
-    /// Store number of wheel pairs
-    unsigned int num_wheel_pairs_;
+  /// Store number of wheel pairs
+  unsigned int num_wheel_pairs_;
 
-    /// Covariance in odometry
-    double covariance_[3];
+  /// Covariance in odometry
+  double covariance_[3];
 
-    /// Has the agv model roller model. 
-    bool isRollerModel_;
+  /// Has the agv model roller model. 
+  bool isRollerModel_;
 
-    /// Get linear velocity after calculating mecanum kinematics. 
-    struct linear_vel
-    {
-      double vel_x;
-      double vel_y;
-      double vel_th;
-    };
-
-    linear_vel cal_LineVel_;
-
-    struct pid_parameter
-    {
-      double p_gain;
-      double i_gain;
-      double d_gain;
-    };
-
-    pid_parameter pid_lr, pid_lf, pid_rf, pid_rr;
-
-    /**
-     * @brief PID control for wheel velocity.
-     * 
-     * TODO : Update calculation if wheel velocities from mecanum to omniwheel
-    */
-    void calkinematics(linear_vel &line_vel);
-    void gazebo_PID_WHEEL_(gazebo::physics::JointPtr joint, pid_parameter &pid, double vel);
+  /// Get linear velocity after calculating mecanum kinematics. 
+  struct linear_vel
+  {
+    double vel_x;
+    double vel_y;
+    double vel_th;
   };
+
+  linear_vel cal_LineVel_;
+
+  struct pid_parameter
+  {
+    double p_gain;
+    double i_gain;
+    double d_gain;
+  };
+
+  pid_parameter pid_lr, pid_lf, pid_rf, pid_rr;
+
+  /**
+   * @brief PID control for wheel velocity.
+   * 
+   * TODO : Update calculation if wheel velocities from mecanum to omniwheel
+  */
+  void calkinematics(linear_vel &line_vel);
+  void gazebo_PID_WHEEL_(gazebo::physics::JointPtr joint, pid_parameter &pid, double vel);
+};
 }  // namespace gazebo_plugins
 
 

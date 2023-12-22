@@ -1,25 +1,24 @@
-name: ROS 2 Workspace Action
-# You may pin to the exact commit or the version.
-# uses: ros/tooling-setup-actions/setup-ros@v1
-
+name: Build and Test
 on:
   push:
     branches:
       - ezBot-ROS_ws
-
 jobs:
-  build:
+  build-and-test:
+    name: Build and Test
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:jammy
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up ROS
-        uses: ros-tooling/setup-ros@v0.7
+      - name: Checkout
+        uses: actions/checkout@v4.0.0
         with:
-          ros-distro: humble
+          path: workspace
 
+      - name: Setup workspace
+        uses: ichiro-its/ros2-ws-action/setup@v1.0.0
+        with:
+          distro: humble
+      
       - name: Build workspace
-        run: source /opt/ros/humble/setup.bash & colcon build
+        uses: ichiro-its/ros2-ws-action/build@v1.0.0
+        with:
+          distro: humble
