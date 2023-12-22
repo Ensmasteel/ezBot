@@ -1,4 +1,4 @@
-# copyright option3 ensma
+# Copyright  2023 Vincent Belpois
 import os
 
 from ament_index_python.packages import get_package_share_directory
