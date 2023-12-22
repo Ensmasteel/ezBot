@@ -26,7 +26,7 @@
     </material>
 
     <link name="base_link">
-    
+
     </link>
 
     <!--Chassis-->
@@ -37,22 +37,23 @@
         <origin xyz="-0.1 0 0"/>
     </joint>
 
+    <!--z=0.06-->
     <link name="chassis">
         <visual>
-            <origin xyz="0.055 0 0.03"/>
+            <origin xyz="0.055 0 0.175"/>
             <geometry>
-                <box size="0.11 0.11 0.06"/>
+                <box size="0.11 0.11 0.35"/>
             </geometry>
             <material name="orange"/>
         </visual>
         <collision>
-            <origin xyz="0.055 0 0.03"/>
+            <origin xyz="0.055 0 0.175"/>
             <geometry>
-                <box size="0.11 0.11 0.06"/>
+                <box size="0.11 0.11 0.35"/>
             </geometry>
         </collision>
-        <xacro:inertial_box mass="0.5" x="0.11" y="0.11" z="0.06">
-            <origin xyz="0.055 0 0.03" rpy="0 0 0"/>
+        <xacro:inertial_box mass="0.5" x="0.11" y="0.11" z="0.35">
+            <origin xyz="0.055 0 0.175" rpy="0 0 0"/>
         </xacro:inertial_box>
     </link>
 
@@ -194,14 +195,14 @@
     </joint>
 
 
-    <link name='roue_droite'>    
-        <visual>  
+    <link name='roue_droite'>
+        <visual>
             <material name="blue"/>
             <geometry>
                 <cylinder radius="0.03" length="0.02"/>
             </geometry>
         </visual>
-        <collision>  
+        <collision>
             <geometry>
                 <cylinder radius="0.03" length="0.02"/>
             </geometry>
@@ -228,14 +229,14 @@
     </joint>
 
 
-    <link name='roue_gauche'>    
-        <visual>  
+    <link name='roue_gauche'>
+        <visual>
             <material name="blue"/>
             <geometry>
                 <cylinder radius="0.03" length="0.02"/>
             </geometry>
         </visual>
-        <collision>  
+        <collision>
             <geometry>
                 <cylinder radius="0.03" length="0.02"/>
             </geometry>
@@ -262,14 +263,14 @@
     </joint>
 
 
-    <link name='roue_avant'>    
-        <visual>  
+    <link name='roue_avant'>
+        <visual>
             <material name="blue"/>
             <geometry>
                 <cylinder radius="0.03" length="0.02"/>
             </geometry>
         </visual>
-        <collision>  
+        <collision>
             <geometry>
                 <cylinder radius="0.03" length="0.02"/>
             </geometry>
@@ -296,14 +297,14 @@
     </joint>
 
 
-    <link name='roue_arriere'>    
-        <visual>  
+    <link name='roue_arriere'>
+        <visual>
             <material name="blue"/>
             <geometry>
                 <cylinder radius="0.03" length="0.02"/>
             </geometry>
         </visual>
-        <collision>  
+        <collision>
             <geometry>
                 <cylinder radius="0.03" length="0.02"/>
             </geometry>
