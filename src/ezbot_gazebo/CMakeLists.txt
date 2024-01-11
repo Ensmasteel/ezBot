@@ -23,4 +23,9 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+# add worlds as files to install
+install(DIRECTORY worlds/
+  DESTINATION share/${PROJECT_NAME}/worlds/
+)
+
 ament_package()
