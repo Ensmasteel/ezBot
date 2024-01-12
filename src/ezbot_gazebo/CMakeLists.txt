@@ -28,4 +28,9 @@ install(DIRECTORY worlds/
   DESTINATION share/${PROJECT_NAME}/worlds/
 )
 
+install(DIRECTORY models/
+    DESTINATION $ENV{HOME}/.gazebo/models/
+)
+
+
 ament_package()

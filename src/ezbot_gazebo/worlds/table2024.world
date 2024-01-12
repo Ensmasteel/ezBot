@@ -61,15 +61,15 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>../../../gazebo/Table2024/table2024.dae</uri>
+              <uri>model://Table2024/table2024.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
           <material>
             <lighting>1</lighting>
             <script>
-              <uri>../../../gazebo/Table2024/materials/scripts</uri>
-              <uri>../../../gazebo/Table2024/materials/textures</uri>
+              <uri>model://Table2024/materials/scripts</uri>
+              <uri>model://Table2024/materials/textures</uri>
               <name>tableMat/Diffuse</name>
               <name>Gazebo/Grey</name>
             </script>
@@ -84,7 +84,7 @@
           <pose>0 0 0 0 -0 0</pose>
           <geometry>
             <mesh>
-              <uri>../../../gazebo/Table2024/table2024.dae</uri>
+              <uri>model://Table2024/table2024.dae</uri>
               <scale>1 1 1</scale>
             </mesh>
           </geometry>
