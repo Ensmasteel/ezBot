@@ -60,7 +60,35 @@
     <gazebo reference="chassis">
         <material>Gazebo/Orange</material>
     </gazebo>
+    <!--bloc aruco-->
 
+    <joint name= "bloc_aruco_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="bloc_aruco"/>
+        <origin xyz="0.055 0 0"/>
+    </joint>
+
+    <link name="bloc_aruco">
+        <visual>
+            <origin xyz="0 0 0.47"/>
+            <geometry>
+                <box size="0.11 0.11 0.001"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.47"/>
+            <geometry>
+                <box size="0.11 0.11 0.001"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.11" y="0.11" z="0.001">
+            <origin xyz="0 0 0.47" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="bloc_aruco">
+        <material>aruco/material</material>
+    </gazebo>
     <!--bloc avant-->
 
     <joint name= "bloc_avant_joint" type="fixed">
