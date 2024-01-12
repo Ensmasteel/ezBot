@@ -8,9 +8,23 @@
             <South>roue_arriere_joint</South>
             <East>roue_droite_joint</East>
             
-            <wheel_separation>0.2</wheel_separation>
+            <wheel_separation>0.25</wheel_separation>
             <wheel_diameter>0.06</wheel_diameter>
+            <WheelSeparationW>0.25</WheelSeparationW>
+            <WheelSeparationL>0.25</WheelSeparationL>
+            <wheelDiameter>0.06</wheelDiameter>
+        
+            <publish_odom>true</publish_odom>
+            <publish_odom_tf>false</publish_odom_tf>
+            <publish_wheel_tf>true</publish_wheel_tf>
+
+            <robotBaseFrame>base_link</robotBaseFrame>
+            
+            <odometry_frame>odom</odometry_frame>
+            <publishOdom>true</publishOdom>
+            <publishOdomTF>true</publishOdomTF>
         </plugin>
+
     </gazebo>
 
 </robot>
