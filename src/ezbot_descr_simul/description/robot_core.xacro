@@ -251,8 +251,17 @@
     <gazebo reference="roue_droite">
         <material>Gazebo/Blue</material>
         <fdir1>1 0 0</fdir1>
-        <mu1>1.0</mu1>
+        <mu1>0.9</mu1>
         <mu2>0.1</mu2>
+        <collision>
+            <surface>
+                <contact>
+                <ode>
+                    <min_depth>0.01</min_depth>
+                </ode>
+                </contact>
+            </surface>
+        </collision>
     </gazebo>
 
     <!--roue gauche-->
@@ -285,8 +294,17 @@
     <gazebo reference="roue_gauche">
         <material>Gazebo/Blue</material>
         <fdir1>1 0 0</fdir1>
-        <mu1>1.0</mu1>
+        <mu1>0.9</mu1>
         <mu2>0.1</mu2>
+        <collision>
+            <surface>
+                <contact>
+                <ode>
+                    <min_depth>0.01</min_depth>
+                </ode>
+                </contact>
+            </surface>
+        </collision>
     </gazebo>
 
     <!--roue avant-->
@@ -319,8 +337,17 @@
     <gazebo reference="roue_avant">
         <material>Gazebo/Blue</material>
         <fdir1>1 0 0</fdir1>
-        <mu1>1.0</mu1>
+        <mu1>0.9</mu1>
         <mu2>0.1</mu2>
+        <collision>
+            <surface>
+                <contact>
+                <ode>
+                    <min_depth>0.01</min_depth>
+                </ode>
+                </contact>
+            </surface>
+        </collision>
     </gazebo>
 
     <!--roue arriere-->
@@ -353,8 +380,17 @@
     <gazebo reference="roue_arriere">
         <material>Gazebo/Blue</material>
         <fdir1>1 0 0</fdir1>
-        <mu1>1.0</mu1>
+        <mu1>0.9</mu1>
         <mu2>0.1</mu2>
+        <collision>
+            <surface>
+                <contact>
+                <ode>
+                    <min_depth>0.01</min_depth>
+                </ode>
+                </contact>
+            </surface>
+        </collision>
     </gazebo>
 
 </robot>
