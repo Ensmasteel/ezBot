@@ -253,6 +253,15 @@
         <fdir1>1 0 0</fdir1>
         <mu1>0.9</mu1>
         <mu2>0.1</mu2>
+        <collision>
+            <surface>
+                <contact>
+                <ode>
+                    <min_depth>0.01</min_depth>
+                </ode>
+                </contact>
+            </surface>
+        </collision>
     </gazebo>
 
     <!--roue gauche-->
@@ -287,6 +296,15 @@
         <fdir1>1 0 0</fdir1>
         <mu1>0.9</mu1>
         <mu2>0.1</mu2>
+        <collision>
+            <surface>
+                <contact>
+                <ode>
+                    <min_depth>0.01</min_depth>
+                </ode>
+                </contact>
+            </surface>
+        </collision>
     </gazebo>
 
     <!--roue avant-->
@@ -321,6 +339,15 @@
         <fdir1>1 0 0</fdir1>
         <mu1>0.9</mu1>
         <mu2>0.1</mu2>
+        <collision>
+            <surface>
+                <contact>
+                <ode>
+                    <min_depth>0.01</min_depth>
+                </ode>
+                </contact>
+            </surface>
+        </collision>
     </gazebo>
 
     <!--roue arriere-->
@@ -355,6 +382,15 @@
         <fdir1>1 0 0</fdir1>
         <mu1>0.9</mu1>
         <mu2>0.1</mu2>
+        <collision>
+            <surface>
+                <contact>
+                <ode>
+                    <min_depth>0.01</min_depth>
+                </ode>
+                </contact>
+            </surface>
+        </collision>
     </gazebo>
 
 </robot>
