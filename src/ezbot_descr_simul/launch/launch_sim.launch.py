@@ -59,10 +59,11 @@ def generate_launch_description():
                                    '-y','-1.0',
                                    '-z', '1.0' ],
                         output='screen')
-    #joystick = IncludeLaunchDescription(
-    #            PythonLaunchDescriptionSource([os.path.join(
-    #                   get_package_share_directory(package_name),'launch','joystick.launch.py'
-    #              )]), launch_arguments={'use_sim_time': 'true'}.items())
+    
+    joystick = IncludeLaunchDescription(
+                PythonLaunchDescriptionSource([os.path.join(
+                       get_package_share_directory("teleop_twist_joy"),'launch','teleop-launch.py'
+                  )]), launch_arguments={'config_filepath': '/home/vincent/joystick.yaml'}.items())
 
 
     # Launch them all!
@@ -76,5 +77,6 @@ def generate_launch_description():
         spawn_entity,
         rsp2,
         spawn_entity2,
-        gazebo
+        gazebo,
+        joystick
     ])

@@ -29,37 +29,16 @@ def generate_launch_description():
                 )]), launch_arguments={'use_sim_time': 'true'}.items()
     )
 
-    # Include the Gazebo launch file, provided by the gazebo_ros package
-    gazebo = IncludeLaunchDescription(
-                PythonLaunchDescriptionSource([os.path.join(
-                    get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),     
-                    launch_arguments={'verbose': 'true'}.items()
-             )
-
-    # Run the spawner node from the gazebo_ros package. The entity name doesn't really matter if you only have a single robot.
-    spawn_entity = Node(package='gazebo_ros', executable='spawn_entity.py',
-                        arguments=['-topic', 'robot_description',
-                                   '-entity', 'EzBot',
-                                   '-x','1.0',
-                                   '-y','-1.0',
-                                   '-z', '1.0' ],
-                        output='screen')
-
     joystick = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                        get_package_share_directory("teleop_twist_joy"),'launch','teleop-launch.py'
                   )]), launch_arguments={'config_filepath': '/home/vincent/joystick.yaml'}.items())
 
 
+
+
     # Launch them all!
     return LaunchDescription([
-        DeclareLaunchArgument(
-            'world',
-            #default_value=[os.path.join('ezbot_gazebo','worlds','table2024.world'), ''],
-            default_value=[os.path.join(get_package_share_directory("ezbot_gazebo"), 'worlds', 'table2024Poteaux.world'), ''],
-            description='SDF world file'),
         rsp,
-        gazebo,
-        spawn_entity,
         joystick
     ])
