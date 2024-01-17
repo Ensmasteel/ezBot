@@ -37,4 +37,14 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
+install(
+  DIRECTORY media/
+  DESTINATION $ENV{HOME}/.gazebo/media/
+)
+
+
+install(DIRECTORY media/
+  DESTINATION share/${PROJECT_NAME}/media/
+)
+
 ament_package()

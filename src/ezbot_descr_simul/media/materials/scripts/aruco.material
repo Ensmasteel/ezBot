@@ -1,0 +1,14 @@
+material arucoMat
+{
+	receive_shaddows off
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture aruco_id0.png
+			}
+		}
+	}
+}

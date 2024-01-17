@@ -86,8 +86,16 @@
         </xacro:inertial_box>
     </link>
 
-    <gazebo reference="bloc_aruco">
-        <material>aruco/material</material>
+    <gazebo reference="bloc_aruco" link="">
+        <visual>
+        <material>
+            <script>
+                <uri>$(find ezbot_descr_simul)/media/materials/scripts</uri>
+                <uri>$(find ezbot_descr_simul)/media/materials/textures</uri>
+                <name>arucoMat</name>
+            </script>
+        </material>
+        </visual>
     </gazebo>
     <!--bloc avant-->
 
