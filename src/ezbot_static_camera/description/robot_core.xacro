@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <xacro:include filename="inertial_macros.xacro" />
+
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1"/>
+    </material>
+
+    <link name="base_link">
+
+    </link>
+
+    <!--Chassis-->
+
+    <joint name= "chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="0 -0.35 3"/>
+    </joint>
+
+    <link name="chassis">
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <box size="0.10 0.10 0.05"/>
+            </geometry>
+            <material name="orange"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <box size="0.1 0.1 0.05"/>
+            </geometry>
+        </collision>
+
+        <xacro:inertial_box mass="0.5" x="0.1" y="0.1" z="0.05">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+    </link>
+
+    <gazebo reference="chassis">
+    <gravity>false</gravity>
+        <material>Gazebo/Orange</material>
+    </gazebo>
+
+
+
+</robot>
