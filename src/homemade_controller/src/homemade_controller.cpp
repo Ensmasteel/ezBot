@@ -72,9 +72,9 @@ class HomemadeController : public rclcpp::Node
         RCLCPP_INFO(this->get_logger(), "I heard: '%f'", msg->linear.y);
         RCLCPP_INFO(this->get_logger(), "I heard: '%f'", msg->angular.z);
         linear_x = msg->linear.x;
-        
+
         std::vector<double> angular_velocities = {0, 0, 0, 0};
-        angular_velocities = fk.getWheelsAngularVelocities(msg->linear.x, msg->linear_y, msg->angular.z);
+        angular_velocities = fk.getWheelsAngularVelocities(msg->linear.x, msg->linear.y, msg->angular.z);
         // comms_.set_motor_values((int) (1000 * msg->linear.x), (int) (1000 * msg->angular.z), 0 , 0);
         comms_.set_motor_values( (int) angular_velocities[0], 
                                  (int) angular_velocities[1], 
