@@ -100,6 +100,16 @@ int runCommand(){
       Serial.print(arg3);
       Serial.print(" ");
       Serial.println(arg4);
+
+    
+      //run the actual steppers
+      steppers[0]->setSpeed(arg1);
+      steppers[1]->setSpeed(arg2);
+      steppers[2]->setSpeed(arg3);
+      steppers[3]->setSpeed(arg4);
+
+
+
       break;
     default:
       Serial.print("Unknown command: ");
@@ -111,6 +121,14 @@ int runCommand(){
 
 
 void loop() {
+
+
+  //run speed each motor
+  for (int i = 0; i < 4; i++)
+  {
+      steppers[i]->runSpeed();
+  }
+
   while(Serial2.available() > 0){
     chr = Serial2.read();
 
