@@ -1,0 +1,45 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 30
+    #use_sim_time: true
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    omnidirectional_controller:
+      type: omnidirectional_controllers/OmnidirectionalController
+
+omnidirectional_controller:
+  ros__parameters:
+    joints:
+      - roue_avant_joint1
+
+    wheel_names: 
+      - roue_avant_joint1
+      - roue_gauche_joint2
+      - roue_arriere_joint3
+      - roue_droite_joint4
+
+    robot_radius: 0.25
+    wheel_radius: 0.03
+
+    wheel_separation: 0.10
+    #wheels_per_side: 1  # actually 2, but both are controlled by 1 signal
+    wheel_radius: 0.015
+
+    wheel_separation_multiplier: 1.0
+    left_wheel_radius_multiplier: 1.0
+    right_wheel_radius_multiplier: 1.0
+    
+    publish_rate: 50.0
+    odom_frame_id: odom
+    base_frame_id: base_link
+    pose_covariance_diagonal : [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    odom_numeric_integration_method: runge_kutta2
+
+    open_loop: true
+    enable_odom_tf: true
+
+    cmd_vel_timeout: 0.5
+    use_stamped_vel: false
