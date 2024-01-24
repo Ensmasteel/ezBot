@@ -43,7 +43,8 @@ install(DIRECTORY include/
 )
 
 
-add_executable(homemade_controller src/homemade_controller.cpp)
+add_executable(homemade_controller src/homemade_controller.cpp
+  src/forward_kinematics.cpp)
 ament_target_dependencies(homemade_controller 
   rclcpp
   geometry_msgs

@@ -58,6 +58,8 @@ public:
     serial_conn_.Write(msg_to_send);
 
     std::string response = "";
+    //skip the response part for now
+    /*
     try
     {
       // Responses end with \r\n so we will read up to (and including) the \n.
@@ -72,7 +74,11 @@ public:
     {
       std::cout << "Sent: " << msg_to_send << " Recv: " << response << std::endl;
     }
-
+    */
+   if (print_output)
+    {
+      std::cout << "Sent: " << msg_to_send << " Recv: " << response << std::endl;
+    }
     return response;
   }
 

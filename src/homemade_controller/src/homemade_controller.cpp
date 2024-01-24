@@ -2,10 +2,11 @@
 // rasperry pi pico communications
 #include "homemade_controller/rppico_comms.hpp"
 
+#include <homemade_controller/forward_kinematics.hpp>
+
 // ros2
 #include <rclcpp/rclcpp.hpp>
 #include <geometry_msgs/msg/twist.hpp>
-
 
 using namespace std::chrono_literals;
 
@@ -17,6 +18,7 @@ update rate)
  are stored in a yaml file. It is given in the launch file.
 
 */
+
 
 
 
@@ -35,8 +37,8 @@ class HomemadeController : public rclcpp::Node
             this->declare_parameter("max_angular_acceleration", 1.0);
             this->declare_parameter("max_angular_deceleration", 1.0);
             this->declare_parameter("update_rate", 50); //Hz
-            this->declare_parameter("serial_port", "/dev/ttyACM0");
-            this->declare_parameter("serial_baudrate", "115200");
+            this->declare_parameter("serial_port", "/dev/ttyAMA3");
+            this->declare_parameter("serial_baudrate", 115200);
             
             
             timer_ = this->create_wall_timer(
@@ -44,6 +46,16 @@ class HomemadeController : public rclcpp::Node
             
             subscription_ = this->create_subscription<geometry_msgs::msg::Twist>(
                 "cmd_vel", 10, std::bind(&HomemadeController::cmd_vel_callback, this, std::placeholders::_1));
+            
+            
+            if (comms_.connected())
+            {
+                comms_.disconnect();
+            }
+            comms_.connect(this->get_parameter("serial_port").as_string(), this->get_parameter("serial_baudrate").as_int(), 10000);
+            
+            fk = ForwardKinematics(   this->get_parameter("wheel_diameter").as_double(), 
+                                    this->get_parameter("wheel_base").as_double());
 
             }
 
@@ -59,17 +71,23 @@ class HomemadeController : public rclcpp::Node
         RCLCPP_INFO(this->get_logger(), "I heard: '%f'", msg->linear.x);
         RCLCPP_INFO(this->get_logger(), "I heard: '%f'", msg->angular.z);
         linear_x = msg->linear.x;
-
-
-
+        std::vector<double> angular_velocities = {0, 0, 0, 0};
+        angular_velocities = fk.getWheelsAngularVelocities(msg->linear.x, 0, msg->angular.z);
+        // comms_.set_motor_values((int) (1000 * msg->linear.x), (int) (1000 * msg->angular.z), 0 , 0);
+        comms_.set_motor_values( (int) angular_velocities[0], 
+                                 (int) angular_velocities[1], 
+                                 (int) angular_velocities[2], 
+                                 (int) angular_velocities[3]);
     }
 
     private:
-        rclcpp::TimerBase::SharedPtr timer_;
+        rclcpp::TimerBase::SharedPtr timer_;    
         size_t count_;
-        RpPicoComs rppico_comms_;
+        RpPicoComs comms_;
         rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr subscription_;
         double linear_x;
+
+        ForwardKinematics fk;
 
 
 };
