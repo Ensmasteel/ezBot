@@ -33,7 +33,7 @@ if(BUILD_TESTING)
 endif()
 
 install(
-  DIRECTORY config description launch worlds meshes
+  DIRECTORY config description launch worlds meshes media
   DESTINATION share/${PROJECT_NAME}
 )
 
@@ -42,9 +42,13 @@ install(
   DESTINATION $ENV{HOME}/.gazebo/media/
 )
 
-
-install(DIRECTORY media/
-  DESTINATION share/${PROJECT_NAME}/media/
+install(
+  DIRECTORY media/
+  DESTINATION $ENV{HOME}/.gazebo/media/
 )
+
+install(PROGRAMS
+  launch/camerapubsub.py
+  DESTINATION lib/${PROJECT_NAME})
 
 ament_package()

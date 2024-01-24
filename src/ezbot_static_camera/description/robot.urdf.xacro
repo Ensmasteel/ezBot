@@ -4,4 +4,5 @@
     <xacro:include filename="robot_core.xacro" />
     <xacro:include filename="camera_static.xacro" />
 
+
 </robot>

@@ -55,9 +55,12 @@ def generate_launch_description():
                         name='Pascameracontroller',
                         arguments=['-topic', 'robot_description',
                                    '-entity', 'camera',
-                                   '-x','1.0',
-                                   '-y','-1.0',
-                                   '-z', '1.0' ],
+                                   '-x','0.0',
+                                   '-y','-1.702',
+                                   '-z', '1.5' ,
+                                   '-R', '0.0',
+                                   '-P', '-0.55',
+                                   '-Y', '0.0'],
                         output='screen')
     
     joystick = IncludeLaunchDescription(
