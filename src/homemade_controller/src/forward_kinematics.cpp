@@ -24,7 +24,7 @@ ForwardKinematics::~ForwardKinematics(){
 std::vector<double> ForwardKinematics::getWheelsAngularVelocities(double vx, double vy, double omega){
 
     double wl = omega * wheel_base_;
-
+    // this needs verification
     angular_vel_vec_[0] = (wl + vy) / wheel_radius_;
     angular_vel_vec_[1] = (wl - vx) / wheel_radius_;
     angular_vel_vec_[2] = (wl - vy) / wheel_radius_;
