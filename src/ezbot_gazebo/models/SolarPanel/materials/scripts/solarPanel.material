@@ -1,0 +1,14 @@
+material solarPanelMat/Diffuse
+{
+	receive_shaddows off
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture texture.png
+			}
+		}
+	}
+}
