@@ -5,6 +5,6 @@ docker run -it --rm \
 --ipc=host --pid=host \
 --env UID=$(id -u) \
 --env GID=$(id -g) \
+-e DISPLAY=$DISPLAY \
 -v .:/ezbot \
---workdir /ezbot \
-ezbot-amd64
+vincida/ezbot:testing-x86
