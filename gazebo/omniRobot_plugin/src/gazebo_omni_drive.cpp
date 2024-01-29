@@ -393,11 +393,19 @@ void GazeboOmniRosDrivePrivate::UpdateWheelVelocities()
   double va = target_rot_;
 
   for (unsigned int i = 0; i < num_wheel_pairs_; ++i)
-  {
+  { 
+    /*
     desired_wheel_speed_[2 * i + NORTH] = (vx + vy - va * (wheel_w_separation_[i] + wheel_l_separation_[i]) / 2.0) / wheel_diameter_[i] * 2;
     desired_wheel_speed_[2 * i + WEST] = (vx - vy - va * (wheel_w_separation_[i] + wheel_l_separation_[i]) / 2.0) / wheel_diameter_[i] * 2;
     desired_wheel_speed_[2 * i + SOUTH] = (vx + vy + va * (wheel_w_separation_[i] + wheel_l_separation_[i]) / 2.0) / wheel_diameter_[i] * 2;
     desired_wheel_speed_[2 * i + EAST] = (vx - vy + va * (wheel_w_separation_[i] + wheel_l_separation_[i]) / 2.0) / wheel_diameter_[i] * 2;
+    */
+   double wl = va * (wheel_w_separation_[i] + wheel_l_separation_[i])  ;
+    desired_wheel_speed_[2 * i + NORTH] = (-wl - vy) / wheel_diameter_[i] * 2;
+    desired_wheel_speed_[2 * i + WEST] = (-wl + vx) / wheel_diameter_[i] * 2;
+    desired_wheel_speed_[2 * i + SOUTH] = (wl - vy) / wheel_diameter_[i] * 2;
+    desired_wheel_speed_[2 * i + EAST] = (wl + vx) / wheel_diameter_[i] * 2;
+
   }
 }
 
