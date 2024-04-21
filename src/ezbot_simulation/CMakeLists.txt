@@ -32,5 +32,10 @@ install(DIRECTORY models/
     DESTINATION $ENV{HOME}/.gazebo/models/
 )
 
+install(
+  DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}
+)
+
 
 ament_package()
