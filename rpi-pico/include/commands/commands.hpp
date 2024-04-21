@@ -7,11 +7,10 @@
 
 #define READ_ENCODERS  'e'
 #define MOTOR_SPEEDS   'm'
-#define MOTOR_RAW_PWM  'o'
+#define ACCELERATION   'a'
+#define MAX_SPEED      's'
 #define PING           'p'
 #define RESET_ENCODERS 'r'
-#define SERVO_WRITE    's'
-#define SERVO_READ     't'
 #define UPDATE_PID     'u'
 #define LEFT            0
 #define RIGHT           1

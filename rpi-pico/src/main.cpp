@@ -1,20 +1,23 @@
 #include <Arduino.h>
-#include <AccelStepper.h>
+
 #include <hardware/uart.h>
 
-
+#include <stepper/stepper.hpp>
 #include "commands/commands.hpp"
 #include "pins/pins.hpp"
 
 UART Serial2(4,5, NC, NC);
 
-AccelStepper stepper1(AccelStepper::DRIVER, STEP_PIN1, DIR_PIN1);
-AccelStepper stepper2(AccelStepper::DRIVER, STEP_PIN2, DIR_PIN2);
-AccelStepper stepper3(AccelStepper::DRIVER, STEP_PIN3, DIR_PIN3);
-AccelStepper stepper4(AccelStepper::DRIVER, STEP_PIN4, DIR_PIN4);
+// AccelStepper stepper1(AccelStepper::DRIVER, STEP_PIN1, DIR_PIN1);
+// AccelStepper stepper2(AccelStepper::DRIVER, STEP_PIN2, DIR_PIN2);
+// AccelStepper stepper3(AccelStepper::DRIVER, STEP_PIN3, DIR_PIN3);
+// AccelStepper stepper4(AccelStepper::DRIVER, STEP_PIN4, DIR_PIN4);
 
-// list of all the steppers
-AccelStepper *steppers[] = {&stepper1, &stepper2, &stepper3, &stepper4};
+
+stepper  stepper1 = stepper(STEP_PIN1, DIR_PIN1, ENABLE_PIN, 0, 0, 2000, 1000);
+stepper  stepper2 = stepper(STEP_PIN2, DIR_PIN2, ENABLE_PIN, 0, 0, 2000, 1000);
+stepper  stepper3 = stepper(STEP_PIN3, DIR_PIN3, ENABLE_PIN, 0, 0, 2000, 1000);
+stepper  stepper4 = stepper(STEP_PIN4, DIR_PIN4, ENABLE_PIN, 0, 0, 2000, 1000);
 
 int arg = 0;
 int i = 0;
@@ -34,11 +37,17 @@ long arg3;
 long arg4;
 
 
-
 void setup() {
+
   Serial.begin(115200);
   Serial2.begin(115200);
   Serial.println("Hello World !");
+
+
+  stepper  stepper1 = stepper(STEP_PIN1, DIR_PIN1, ENABLE_PIN, 0, 0, 1000, 10000);
+  stepper  stepper2 = stepper(STEP_PIN2, DIR_PIN2, ENABLE_PIN, 0, 0, 1000, 10000);
+  stepper  stepper3 = stepper(STEP_PIN3, DIR_PIN3, ENABLE_PIN, 0, 0, 1000, 10000);
+  stepper  stepper4 = stepper(STEP_PIN4, DIR_PIN4, ENABLE_PIN, 0, 0, 1000, 10000);
 
 
   // pin mode setup
@@ -53,15 +62,6 @@ void setup() {
   // microstepping option : 
   digitalWrite(CFG1_PIN, LOW);
   digitalWrite(CFG2_PIN, LOW);
-
-
-  //set max speed, acceleration and setspeed to zero
-  for (int i = 0; i < 4; i++)
-  {
-      steppers[i]->setMaxSpeed(1000);
-      steppers[i]->setAcceleration(200);
-      steppers[i]->setSpeed(0);
-  }
 
 
 }
@@ -103,14 +103,33 @@ int runCommand(){
 
     
       //run the actual steppers
-      steppers[0]->setSpeed(arg1);
-      steppers[1]->setSpeed(arg2);
-      steppers[2]->setSpeed(arg3);
-      steppers[3]->setSpeed(arg4);
+      stepper1.setTargetSpeed(arg1);
+      stepper2.setTargetSpeed(arg2);
+      stepper3.setTargetSpeed(arg3);
+      stepper4.setTargetSpeed(arg4);
 
 
 
       break;
+    case ACCELERATION:
+      Serial.print("ACCELERATION ");
+      Serial.print(arg1);
+
+      stepper1.setAcceleration(arg1);
+      stepper2.setAcceleration(arg1);
+      stepper3.setAcceleration(arg1);
+      stepper4.setAcceleration(arg1);
+      break;
+    case MAX_SPEED:
+      Serial.print("MAX_SPEED ");
+      Serial.print(arg1);
+
+      stepper1.setMaxSpeed(arg1);
+      stepper2.setMaxSpeed(arg1);
+      stepper3.setMaxSpeed(arg1);
+      stepper4.setMaxSpeed(arg1);
+      break;
+    // TODO : add a command for sending back the "encoder" values
     default:
       Serial.print("Unknown command: ");
       Serial.println(cmd);
@@ -124,10 +143,13 @@ void loop() {
 
 
   //run speed each motor
-  for (int i = 0; i < 4; i++)
-  {
-      steppers[i]->runSpeed();
-  }
+
+  stepper1.run();
+  stepper2.run();
+  stepper3.run();
+  stepper4.run();
+
+  stepper2.log();
 
   while(Serial2.available() > 0){
     chr = Serial2.read();
