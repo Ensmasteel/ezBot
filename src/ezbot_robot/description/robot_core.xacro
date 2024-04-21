@@ -90,8 +90,8 @@
         <visual>
         <material>
             <script>
-                <uri>$(find ezbot_descr_simul)/media/materials/scripts</uri>
-                <uri>$(find ezbot_descr_simul)/media/materials/textures</uri>
+                <uri>$(find ezbot_robot)/media/materials/scripts</uri>
+                <uri>$(find ezbot_robot)/media/materials/textures</uri>
                 <name>arucoMat</name>
             </script>
         </material>
