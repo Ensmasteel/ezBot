@@ -73,8 +73,8 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument(
             'world',
-            #default_value=[os.path.join('ezbot_gazebo','worlds','table2024.world'), ''],
-            default_value=[os.path.join(get_package_share_directory("ezbot_gazebo"), 'worlds', 'table_with_panneaux.world'), ''],
+            #default_value=[os.path.join('ezbot_simulation','worlds','table2024.world'), ''],
+            default_value=[os.path.join(get_package_share_directory("ezbot_simulation"), 'worlds', 'table_with_panneaux.world'), ''],
             description='SDF world file'),
         rsp,
         spawn_entity,
