@@ -20,6 +20,8 @@ RUN apt-get install -y ros-humble-nav2-*
 # Copy entrypoint script (which creates ros user with same uid/gid as host user)
 COPY entrypoint.sh /entrypoint.sh
 
+COPY bashrc /home/ezbot/.bashrc
+
 WORKDIR /colcon_ws
 
 # Uncomment to copy and build source_packages in colcon workspace  
@@ -37,3 +39,8 @@ ENV LAUNCH_COMMAND='ros2 topic pub /talker std_msgs/msg/String "{data: Hello wor
 RUN echo 'alias build="colcon build --symlink-install  --event-handlers console_direct+"' >> /etc/bash.bashrc && \
     echo 'alias run="su - ros /run.sh"' >> /etc/bash.bashrc && \
     echo "source /colcon_ws/install/setup.bash; $LAUNCH_COMMAND" >> /run.sh && chmod +x /run.sh
+
+
+ENTRYPOINT [ "/bin/bash", "/entrypoint.sh" ]
+
+CMD [ "source", "/opt/ros/humble/setup.bash", "&&", "source", "/ezbot/ezbot/install/setup.bash", "&&", "ros2", "run", "homemade_controller", "homemade_controller", "--ros-args", "--params-file", "/ezbot/params.yaml" ]
