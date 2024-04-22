@@ -14,6 +14,7 @@
   <depend>std_msgs</depend>
   <depend>cv_bridge</depend>
   <depend>image_transport</depend>
+  <!-- TODO add controller manager dependency-->
   <!--
     removed opencv, even though we need it-->
   <depend>rclpy</depend>
