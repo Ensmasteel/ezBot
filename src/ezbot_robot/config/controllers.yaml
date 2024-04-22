@@ -7,19 +7,22 @@ controller_manager:
       type: joint_state_broadcaster/JointStateBroadcaster
 
     omnidirectional_controller:
-      type: omnidirectional_controllers/OmnidirectionalController
+      type: diff_drive_controller/DiffDriveController
 
 omnidirectional_controller:
   ros__parameters:
     joints:
-      - roue_avant_joint1
+      - roue_avant_joint
+      - roue_gauche_joint
+      - roue_arriere_joint
+      - roue_droite_joint
 
     wheel_names: 
-      - roue_avant_joint1
-      - roue_gauche_joint2
-      - roue_arriere_joint3
-      - roue_droite_joint4
-
+      - roue_avant_joint
+      - roue_gauche_joint
+      - roue_arriere_joint
+      - roue_droite_joint
+      
     robot_radius: 0.25
     wheel_radius: 0.03
 

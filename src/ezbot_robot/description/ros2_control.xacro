@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <ros2_control name="ros2_control_wheel_joint" type="system">
+    <ros2_control name="hellothere" type="system">
     
+      
         <hardware>
             <plugin>omnidrive_rppico/OmniDriveRpPicoHardware</plugin>
             <param name="front_wheel_name">roue_avant_joint</param>
@@ -10,8 +11,8 @@
             <param name="back_wheel_name">roue_arriere_joint</param>
             <param name="right_wheel_name">roue_droite_joint</param>
 
-            <param name="loop_rate">30</param>
-            <param name="device">/dev/pts/9</param>
+            <param name="loop_rate">30.0</param>
+            <param name="device">/dev/pts/7</param>
             <param name="baudrate">115200</param>
 
             <param name="timeout_ms">10000</param>
@@ -19,40 +20,38 @@
         </hardware>
   
 
-        <joint name="roue_avant_joint1">
+        <joint name="roue_avant_joint">
             <command_interface name="velocity"> 
                 <param name="min">-10</param>
-                <param name="max">10</param>
+                <param name="max">10</param> 
             </command_interface>
-            <state_interface name="velocity"/>
             <state_interface name="position"/>
+            <state_interface name="velocity"/>
         </joint>
-        <joint name="roue_gauche_joint2">
+        <joint name="roue_gauche_joint">
             <command_interface name="velocity">
                 <param name="min">-10</param>
                 <param name="max">10</param>
             </command_interface>
-            <state_interface name="velocity"/>
             <state_interface name="position"/>
+            <state_interface name="velocity"/>
         </joint>
-        <joint name="roue_arriere_joint3">
+        <joint name="roue_arriere_joint">
             <command_interface name="velocity">
                 <param name="min">-10</param>
                 <param name="max">10</param>
             </command_interface>
-            <state_interface name="velocity"/>
             <state_interface name="position"/>
+            <state_interface name="velocity"/>
         </joint>
-        <joint name="roue_droite_joint4">
+        <joint name="roue_droite_joint">
             <command_interface name="velocity">
                 <param name="min">-10</param>
                 <param name="max">10</param>
             </command_interface>
-            <state_interface name="velocity"/>
             <state_interface name="position"/>
+            <state_interface name="velocity"/>
         </joint>
     </ros2_control>
-
-
 
 </robot>
