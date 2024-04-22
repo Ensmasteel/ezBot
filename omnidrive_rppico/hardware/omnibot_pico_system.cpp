@@ -28,8 +28,10 @@ hardware_interface::CallbackReturn OmniDriveRpPicoHardware::on_init(
   cfg_.right_wheel_name = info_.hardware_parameters["right_wheel_name"];
   
   cfg_.loop_rate = std::stof(info_.hardware_parameters["loop_rate"]);
+  RCLCPP_INFO(rclcpp::get_logger("OmniDriveRpPicoHardware"), "Setting params from URDF");
+
   cfg_.device = info_.hardware_parameters["device"];
-  cfg_.baud_rate = std::stoi(info_.hardware_parameters["baud_rate"]);
+  cfg_.baud_rate = std::stoi(info_.hardware_parameters["baudrate"]);
   cfg_.timeout_ms = std::stoi(info_.hardware_parameters["timeout_ms"]);
   cfg_.enc_counts_per_rev = std::stoi(info_.hardware_parameters["enc_counts_per_rev"]);
   if (info_.hardware_parameters.count("pid_p") > 0)
@@ -50,9 +52,12 @@ hardware_interface::CallbackReturn OmniDriveRpPicoHardware::on_init(
   wheel_b_.setup(cfg_.back_wheel_name, cfg_.enc_counts_per_rev);
   wheel_r_.setup(cfg_.right_wheel_name, cfg_.enc_counts_per_rev);
 
-
+  RCLCPP_INFO(rclcpp::get_logger("OmniDriveRpPicoHardware"), "Setting up hardware interfaces");
   for (const hardware_interface::ComponentInfo & joint : info_.joints)
   {
+    RCLCPP_INFO(
+      rclcpp::get_logger("OmniDriveRpPicoHardware"), "Loading joint '%s'", joint.name.c_str());
+
     // DiffBotSystem has exactly two states and one command interface on each joint
     if (joint.command_interfaces.size() != 1)
     {
@@ -99,18 +104,29 @@ hardware_interface::CallbackReturn OmniDriveRpPicoHardware::on_init(
       return hardware_interface::CallbackReturn::ERROR;
     }
   }
-
+  RCLCPP_INFO(rclcpp::get_logger("OmniDriveRpPicoHardware"), "Successfully set up hardware interfaces");
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
 std::vector<hardware_interface::StateInterface> OmniDriveRpPicoHardware::export_state_interfaces()
 {
   std::vector<hardware_interface::StateInterface> state_interfaces;
-
+  RCLCPP_INFO(rclcpp::get_logger("OmniDriveRpPicoHardware"), "Exporting state interfaces");
+  
+  state_interfaces.emplace_back(hardware_interface::StateInterface(
+    wheel_f_.name, hardware_interface::HW_IF_POSITION, &wheel_f_.pos));
+  state_interfaces.emplace_back(hardware_interface::StateInterface(
+    wheel_f_.name, hardware_interface::HW_IF_VELOCITY, &wheel_f_.vel));
+  
   state_interfaces.emplace_back(hardware_interface::StateInterface(
     wheel_l_.name, hardware_interface::HW_IF_POSITION, &wheel_l_.pos));
   state_interfaces.emplace_back(hardware_interface::StateInterface(
     wheel_l_.name, hardware_interface::HW_IF_VELOCITY, &wheel_l_.vel));
+
+  state_interfaces.emplace_back(hardware_interface::StateInterface(
+    wheel_b_.name, hardware_interface::HW_IF_POSITION, &wheel_b_.pos));
+  state_interfaces.emplace_back(hardware_interface::StateInterface(
+    wheel_b_.name, hardware_interface::HW_IF_VELOCITY, &wheel_b_.vel));  
 
   state_interfaces.emplace_back(hardware_interface::StateInterface(
     wheel_r_.name, hardware_interface::HW_IF_POSITION, &wheel_r_.pos));
@@ -125,7 +141,13 @@ std::vector<hardware_interface::CommandInterface> OmniDriveRpPicoHardware::expor
   std::vector<hardware_interface::CommandInterface> command_interfaces;
 
   command_interfaces.emplace_back(hardware_interface::CommandInterface(
+    wheel_f_.name, hardware_interface::HW_IF_VELOCITY, &wheel_f_.cmd));
+
+  command_interfaces.emplace_back(hardware_interface::CommandInterface(
     wheel_l_.name, hardware_interface::HW_IF_VELOCITY, &wheel_l_.cmd));
+
+  command_interfaces.emplace_back(hardware_interface::CommandInterface(
+    wheel_b_.name, hardware_interface::HW_IF_VELOCITY, &wheel_b_.cmd));
 
   command_interfaces.emplace_back(hardware_interface::CommandInterface(
     wheel_r_.name, hardware_interface::HW_IF_VELOCITY, &wheel_r_.cmd));
