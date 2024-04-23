@@ -11,18 +11,10 @@ controller_manager:
 
 omnidirectional_controller:
   ros__parameters:
-    joints: [
-      roue_avant_joint,
-      roue_gauche_joint,
-      roue_arriere_joint,
-      roue_droite_joint]
-      
+    left_wheel_names: ["roue_gauche_joint"]
+    right_wheel_names: ["roue_droite_joint"]
 
-    wheel_names: [
-      roue_avant_joint,
-      roue_gauche_joint,
-      roue_arriere_joint,
-      roue_droite_joint]
+    
       
     robot_radius: 0.25
     wheel_radius: 0.03
