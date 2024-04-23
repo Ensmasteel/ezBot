@@ -45,13 +45,10 @@ def generate_launch_description():
     )
 
     #robot_description = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
-    controller_params_file = os.path.join(get_package_share_directory('ezbot_robot'), 'config', 'controllers.yaml')
-    
-    pkg_path = os.path.join(get_package_share_directory('ezbot_robot'))
-    xacro_file = os.path.join(pkg_path,'description','robot.urdf.xacro')
-    robot_description = {"robot_description": xacro.process_file(xacro_file).toxml()}
+    #controller_params_file = os.path.join(get_package_share_directory('ezbot_robot'), 'config', 'controllers.yaml')
+    controller_params_file = os.path.join(get_package_share_directory('ezbot_robot'), 'config', 'omnidirectional_controller.yaml')
 
-
+ 
     controller_manager = Node(
         package="controller_manager",
         executable="ros2_control_node",
@@ -75,7 +72,7 @@ def generate_launch_description():
         arguments=['omnidirectional_controller'],
     )
     delayed_omnidrive_spawner = TimerAction(
-        period=1.0,
+        period=10.0,
         actions=[omnidrive_spawner],
     )
 

@@ -1,0 +1,19 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+    use_sim_time: true
+
+    omnidirectional_controller:
+      type: forward_command_controller/ForwardCommandController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+omnidirectional_controller:
+  ros__parameters:
+    joints:
+      - roue_avant_joint
+      - roue_gauche_joint
+      - roue_arriere_joint
+      - roue_droite_joint
+    interface_name: velocity

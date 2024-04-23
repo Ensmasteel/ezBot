@@ -12,7 +12,7 @@
             <param name="right_wheel_name">roue_droite_joint</param>
 
             <param name="loop_rate">30</param>
-            <param name="device">/dev/ttyAMA1</param>
+            <param name="device">/dev/pts/11</param>
             <param name="baudrate">115200</param>
 
             <param name="timeout_ms">10000</param>
