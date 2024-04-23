@@ -52,7 +52,7 @@ def generate_launch_description():
 
 
     homemade_controller = Node(
-        package='ezbot_robot',
+        package='homemade_controller',
         executable='homemade_controller',
         name='homemade_controller',
         output='screen',
