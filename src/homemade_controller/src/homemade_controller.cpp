@@ -37,7 +37,7 @@ class HomemadeController : public rclcpp::Node
             this->declare_parameter("max_angular_acceleration", 1.0);
             this->declare_parameter("max_angular_deceleration", 1.0);
             this->declare_parameter("update_rate", 50); //Hz
-            this->declare_parameter("serial_port", "/dev/ttyAMA3");
+            this->declare_parameter("serial_port", "/dev/ttyAMA1");
             this->declare_parameter("serial_baudrate", 115200);
             
             
