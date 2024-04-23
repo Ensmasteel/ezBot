@@ -254,6 +254,8 @@ hardware_interface::return_type omnidrive_rppico ::OmniDriveRpPicoHardware::writ
   int motor_b_counts_per_loop = wheel_b_.cmd / wheel_b_.rads_per_count / cfg_.loop_rate;
   int motor_r_counts_per_loop = wheel_r_.cmd / wheel_r_.rads_per_count / cfg_.loop_rate;
   
+
+  
   comms_.set_motor_values(motor_f_counts_per_loop, 
                           motor_l_counts_per_loop,
                           motor_b_counts_per_loop, 
