@@ -39,6 +39,7 @@ public:
 
   void connect(const std::string &serial_device, int32_t baud_rate, int32_t timeout_ms)
   {  
+    std::cout << "Connecting to serial device: " << serial_device << " at baud rate: " << baud_rate << std::endl;
     timeout_ms_ = timeout_ms;
     serial_conn_.Open(serial_device);
     serial_conn_.SetBaudRate(convert_baud_rate(baud_rate));
