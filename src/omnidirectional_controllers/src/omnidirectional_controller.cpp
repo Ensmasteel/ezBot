@@ -166,25 +166,82 @@ CallbackReturn OmnidirectionalController::on_configure(
     static_cast<int>(node_->get_parameter("cmd_vel_timeout").as_double() * 1000.0)};
   use_stamped_vel_ = node_->get_parameter("use_stamped_vel").as_bool();
 
-
-  odom_params_.linear_has_velocity_limits = node_->get_parameter("has_velocity_limits").as_bool();
-
+  // checking parameters of speed, acceleration, and jerk limits
+  //linear
+  auto linear_has_velocity_limits = node_->get_parameter("linear_has_velocity_limits");
+  if (linear_has_velocity_limits.get_type() == rclcpp::ParameterType::PARAMETER_NOT_SET) {
+    RCLCPP_WARN(logger, "Parameter 'linear_has_velocity_limits' not set. Using default value.");
+    odom_params_.linear_has_velocity_limits = false;
+  } else {
+    odom_params_.linear_has_velocity_limits = linear_has_velocity_limits.as_bool();
+  }
   if (odom_params_.linear_has_velocity_limits) {
     odom_params_.linear_min_velocity = node_->get_parameter("min_velocity").as_double();
     odom_params_.linear_max_velocity = node_->get_parameter("max_velocity").as_double();
   }
 
-  odom_params_.linear_has_acceleration_limits = node_->get_parameter("has_acceleration_limits").as_bool();
+  auto linear_has_acceleration_limits = node_->get_parameter("linear_has_acceleration_limits");
+  if (linear_has_acceleration_limits.get_type() == rclcpp::ParameterType::PARAMETER_NOT_SET){
+    RCLCPP_WARN(logger, "Parameter 'linear_has_acceleration_limits' not set. Using default value.");
+    odom_params_.linear_has_acceleration_limits = false;
+  } else {
+    odom_params_.linear_has_acceleration_limits = linear_has_acceleration_limits.as_bool();
+  }
   if (odom_params_.linear_has_acceleration_limits) {
     odom_params_.linear_min_acceleration = node_->get_parameter("min_acceleration").as_double();
     odom_params_.linear_max_acceleration = node_->get_parameter("max_acceleration").as_double();
   }
 
-  odom_params_.linear_has_jerk_limits = node_->get_parameter("has_jerk_limits").as_bool();
+  auto linear_has_jerk_limits = node_->get_parameter("linear_has_jerk_limits");
+  if (linear_has_jerk_limits.get_type() == rclcpp::ParameterType::PARAMETER_NOT_SET){
+    RCLCPP_WARN(logger, "Parameter 'linear_has_jerk_limits' not set. Using default value.");
+    odom_params_.linear_has_jerk_limits = false;
+  } else {
+    odom_params_.linear_has_jerk_limits = linear_has_jerk_limits.as_bool();
+  }
   if (odom_params_.linear_has_jerk_limits) {
     odom_params_.linear_min_jerk = node_->get_parameter("min_jerk").as_double();
     odom_params_.linear_max_jerk = node_->get_parameter("max_jerk").as_double();
   }
+
+
+  // angular
+  auto angular_has_velocity_limits = node_->get_parameter("angular_has_velocity_limits");
+  if (angular_has_velocity_limits.get_type() == rclcpp::ParameterType::PARAMETER_NOT_SET) {
+    RCLCPP_WARN(logger, "Parameter 'angular_has_velocity_limits' not set. Using default value.");
+    odom_params_.angular_has_velocity_limits = false;
+  } else {
+    odom_params_.angular_has_velocity_limits = angular_has_velocity_limits.as_bool();
+  }
+  if (odom_params_.angular_has_velocity_limits) {
+    odom_params_.angular_min_velocity = node_->get_parameter("angular_min_velocity").as_double();
+    odom_params_.angular_max_velocity = node_->get_parameter("angular_max_velocity").as_double();
+  }
+
+  auto angular_has_acceleration_limits = node_->get_parameter("angular_has_acceleration_limits");
+  if (angular_has_acceleration_limits.get_type() == rclcpp::ParameterType::PARAMETER_NOT_SET){
+    RCLCPP_WARN(logger, "Parameter 'angular_has_acceleration_limits' not set. Using default value.");
+    odom_params_.angular_has_acceleration_limits = false;
+  } else {
+    odom_params_.angular_has_acceleration_limits = angular_has_acceleration_limits.as_bool();
+  }
+  if (odom_params_.angular_has_acceleration_limits) {
+    odom_params_.angular_min_acceleration = node_->get_parameter("angular_min_acceleration").as_double();
+    odom_params_.angular_max_acceleration = node_->get_parameter("angular_max_acceleration").as_double();
+  }
+
+  auto angular_has_jerk_limits = node_->get_parameter("angular_has_jerk_limits");
+  if (angular_has_jerk_limits.get_type() == rclcpp::ParameterType::PARAMETER_NOT_SET){
+    RCLCPP_WARN(logger, "Parameter 'angular_has_jerk_limits' not set. Using default value.");
+    odom_params_.angular_has_jerk_limits = false;
+  } else {
+    odom_params_.angular_has_jerk_limits = angular_has_jerk_limits.as_bool();
+  }
+  if (odom_params_.angular_has_jerk_limits) {
+    odom_params_.angular_min_jerk = node_->get_parameter("angular_min_jerk").as_double();
+    odom_params_.angular_max_jerk = node_->get_parameter("angular_max_jerk").as_double();
+  }
+
 
   limiter_linear_ = diff_drive_controller::SpeedLimiter(
     odom_params_.linear_has_velocity_limits, odom_params_.linear_has_acceleration_limits,
