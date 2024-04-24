@@ -29,6 +29,7 @@ set(THIS_PACKAGE_INCLUDE_DEPENDS
   tf2_msgs
   tf2_ros
   tf2
+  diff_drive_controller
 )
 
 find_package(ament_cmake REQUIRED)
@@ -36,16 +37,19 @@ foreach(Dependency IN ITEMS ${THIS_PACKAGE_INCLUDE_DEPENDS})
   find_package(${Dependency} REQUIRED)
 endforeach()
 
-add_library(odometry SHARED)
 
+add_library(odometry SHARED)
 target_sources(odometry 
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/odometry.cpp
 )
+
 
 target_include_directories(odometry
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
+
+
 
 add_library(kinematics SHARED)
 

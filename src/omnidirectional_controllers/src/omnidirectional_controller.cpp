@@ -22,6 +22,7 @@
 
 #include "omnidirectional_controllers/omnidirectional_controller.hpp"
 
+
 #include <chrono>  // NOLINT
 #include <cmath>
 #include <exception>
@@ -164,6 +165,39 @@ CallbackReturn OmnidirectionalController::on_configure(
   cmd_vel_timeout_ = std::chrono::milliseconds{
     static_cast<int>(node_->get_parameter("cmd_vel_timeout").as_double() * 1000.0)};
   use_stamped_vel_ = node_->get_parameter("use_stamped_vel").as_bool();
+
+
+  odom_params_.linear_has_velocity_limits = node_->get_parameter("has_velocity_limits").as_bool();
+
+  if (odom_params_.linear_has_velocity_limits) {
+    odom_params_.linear_min_velocity = node_->get_parameter("min_velocity").as_double();
+    odom_params_.linear_max_velocity = node_->get_parameter("max_velocity").as_double();
+  }
+
+  odom_params_.linear_has_acceleration_limits = node_->get_parameter("has_acceleration_limits").as_bool();
+  if (odom_params_.linear_has_acceleration_limits) {
+    odom_params_.linear_min_acceleration = node_->get_parameter("min_acceleration").as_double();
+    odom_params_.linear_max_acceleration = node_->get_parameter("max_acceleration").as_double();
+  }
+
+  odom_params_.linear_has_jerk_limits = node_->get_parameter("has_jerk_limits").as_bool();
+  if (odom_params_.linear_has_jerk_limits) {
+    odom_params_.linear_min_jerk = node_->get_parameter("min_jerk").as_double();
+    odom_params_.linear_max_jerk = node_->get_parameter("max_jerk").as_double();
+  }
+
+  limiter_linear_ = diff_drive_controller::SpeedLimiter(
+    odom_params_.linear_has_velocity_limits, odom_params_.linear_has_acceleration_limits,
+    odom_params_.linear_has_jerk_limits, odom_params_.linear_min_velocity, odom_params_.linear_max_velocity,
+    odom_params_.linear_min_acceleration, odom_params_.linear_max_acceleration, odom_params_.linear_min_jerk,
+    odom_params_.linear_max_jerk);
+  limiter_angular_ = diff_drive_controller::SpeedLimiter(
+    odom_params_.angular_has_velocity_limits, odom_params_.angular_has_acceleration_limits,
+    odom_params_.angular_has_jerk_limits, odom_params_.angular_min_velocity, odom_params_.angular_max_velocity,
+    odom_params_.angular_min_acceleration, odom_params_.angular_max_acceleration,
+    odom_params_.angular_min_jerk, odom_params_.angular_max_jerk);
+
+
 
   // initialize command subscriber
   if (use_stamped_vel_) {
@@ -342,6 +376,8 @@ controller_interface::return_type OmnidirectionalController::update(
     cmd_vel_->twist.angular.z = 0.0;
   }
 
+  Twist command = *cmd_vel_;
+
   if (odom_params_.open_loop) {
     odometry_.updateOpenLoop(
       {cmd_vel_->twist.linear.x,  cmd_vel_->twist.linear.y, cmd_vel_->twist.angular.z},
@@ -386,6 +422,21 @@ controller_interface::return_type OmnidirectionalController::update(
   //   odometry_transform_message_.transform.rotation.z = orientation.z();
   //   odometry_transform_message_.transform.rotation.w = orientation.w();
   // }
+
+  auto & last_command = previous_commands_.back().twist;
+  auto & second_to_last_command = previous_commands_.front().twist;
+
+  limiter_linear_.limit(command.twist.linear.x, second_to_last_command.linear.x, last_command.linear.x, 
+                        period.seconds());
+  limiter_linear_.limit(command.twist.linear.y, second_to_last_command.linear.y, last_command.linear.y,
+                        period.seconds());
+
+  limiter_angular_.limit(command.twist.angular.z, second_to_last_command.angular.z, last_command.angular.z,
+                        period.seconds());
+
+
+  previous_commands_.pop();
+  previous_commands_.emplace(command);
 
   // Compute wheels velocities:
   RobotVelocity body_vel_setpoint;

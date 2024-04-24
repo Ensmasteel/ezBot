@@ -26,6 +26,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <queue>
 
 #include "controller_interface/controller_interface.hpp"
 #include "geometry_msgs/msg/twist.hpp"
@@ -38,9 +39,12 @@
 #include "omnidirectional_controllers/kinematics.hpp"
 #include "omnidirectional_controllers/odometry.hpp"
 #include "omnidirectional_controllers/types.hpp"
+#include "diff_drive_controller/speed_limiter.hpp"
+
 
 namespace omnidirectional_controllers {
 using CallbackReturn = rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn;
+using Twist = geometry_msgs::msg::TwistStamped;
 
 class OmnidirectionalController : public controller_interface::ControllerInterface {
  public:
@@ -57,7 +61,7 @@ class OmnidirectionalController : public controller_interface::ControllerInterfa
   controller_interface::return_type update(const rclcpp::Time & time, const rclcpp::Duration & period) override;
   ~OmnidirectionalController();
 
- protected:
+protected:
   struct WheelHandle {
     std::reference_wrapper<const hardware_interface::LoanedStateInterface> velocity_state;
     std::reference_wrapper<hardware_interface::LoanedCommandInterface> velocity_command;
@@ -77,6 +81,24 @@ class OmnidirectionalController : public controller_interface::ControllerInterfa
     std::string odom_numeric_integration_method = EULER_FORWARD;
     std::array<double, 6> pose_covariance_diagonal;
     std::array<double, 6> twist_covariance_diagonal;
+    bool linear_has_velocity_limits = false;
+    bool linear_has_acceleration_limits = false;
+    bool linear_has_jerk_limits = false;
+    double linear_min_velocity = std::numeric_limits<double>::quiet_NaN();
+    double linear_max_velocity = std::numeric_limits<double>::quiet_NaN();
+    double linear_min_acceleration = std::numeric_limits<double>::quiet_NaN();
+    double linear_max_acceleration = std::numeric_limits<double>::quiet_NaN();
+    double linear_min_jerk = std::numeric_limits<double>::quiet_NaN();
+    double linear_max_jerk = std::numeric_limits<double>::quiet_NaN();
+    bool angular_has_velocity_limits = false;
+    bool angular_has_acceleration_limits = false;
+    bool angular_has_jerk_limits = false;
+    double angular_min_velocity = std::numeric_limits<double>::quiet_NaN();
+    double angular_max_velocity = std::numeric_limits<double>::quiet_NaN();
+    double angular_min_acceleration = std::numeric_limits<double>::quiet_NaN();
+    double angular_max_acceleration = std::numeric_limits<double>::quiet_NaN();
+    double angular_min_jerk = std::numeric_limits<double>::quiet_NaN();
+    double angular_max_jerk = std::numeric_limits<double>::quiet_NaN();
   } odom_params_;
 
   bool use_stamped_vel_ = true;
@@ -103,6 +125,14 @@ class OmnidirectionalController : public controller_interface::ControllerInterfa
   double publish_rate_{50.0};
   rclcpp::Duration publish_period_{0, 0};
   rclcpp::Time previous_publish_timestamp_{0};
+
+  std::queue<Twist> previous_commands_;  // last two commands
+
+  // speed limiters
+  diff_drive_controller::SpeedLimiter limiter_linear_;
+  diff_drive_controller::SpeedLimiter limiter_angular_;
+
+
 
  private:
   void velocityCommandStampedCallback(const geometry_msgs::msg::TwistStamped::SharedPtr cmd_vel);
