@@ -437,6 +437,10 @@ controller_interface::return_type OmnidirectionalController::update(
   }
 
   Twist command = *cmd_vel_;
+  double & linear_x_command = command.twist.linear.x;
+  double & linear_y_command = command.twist.linear.y;
+  double & angular_command = command.twist.angular.z;
+
 
   if (odom_params_.open_loop) {
     odometry_.updateOpenLoop(
@@ -486,12 +490,12 @@ controller_interface::return_type OmnidirectionalController::update(
   auto & last_command = previous_commands_.back().twist;
   auto & second_to_last_command = previous_commands_.front().twist;
 
-  limiter_linear_.limit(command.twist.linear.x, second_to_last_command.linear.x, last_command.linear.x, 
+  limiter_linear_.limit(linear_x_command, second_to_last_command.linear.x, last_command.linear.x, 
                         period.seconds());
-  limiter_linear_.limit(command.twist.linear.y, second_to_last_command.linear.y, last_command.linear.y,
+  limiter_linear_.limit(linear_y_command, second_to_last_command.linear.y, last_command.linear.y,
                         period.seconds());
 
-  limiter_angular_.limit(command.twist.angular.z, second_to_last_command.angular.z, last_command.angular.z,
+  limiter_angular_.limit(angular_command, second_to_last_command.angular.z, last_command.angular.z,
                         period.seconds());
 
 
@@ -500,9 +504,9 @@ controller_interface::return_type OmnidirectionalController::update(
 
   // Compute wheels velocities:
   RobotVelocity body_vel_setpoint;
-  body_vel_setpoint.vx = cmd_vel_->twist.linear.x;
-  body_vel_setpoint.vy = cmd_vel_->twist.linear.y;
-  body_vel_setpoint.omega = cmd_vel_->twist.angular.z;
+  body_vel_setpoint.vx = linear_x_command;
+  body_vel_setpoint.vy = linear_y_command;
+  body_vel_setpoint.omega = angular_command;
 
   std::vector<double> wheels_angular_velocity;
   wheels_angular_velocity = omni_robot_kinematics_.getWheelsAngularVelocities(body_vel_setpoint);
