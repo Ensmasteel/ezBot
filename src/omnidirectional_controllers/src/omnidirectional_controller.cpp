@@ -254,7 +254,10 @@ CallbackReturn OmnidirectionalController::on_configure(
     odom_params_.angular_min_acceleration, odom_params_.angular_max_acceleration,
     odom_params_.angular_min_jerk, odom_params_.angular_max_jerk);
 
-
+  const Twist empty_twist;
+  
+  previous_commands_.emplace(empty_twist);
+  previous_commands_.emplace(empty_twist);
 
   // initialize command subscriber
   if (use_stamped_vel_) {
