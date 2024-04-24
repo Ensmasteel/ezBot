@@ -35,7 +35,16 @@ omnidirectional_controller:
     use_stamped_vel: false
 
     linear_has_velocity_limits: true
-    linear_min_velocity: -0.1
-    linear_max_velocity: 0.1
+    linear_min_velocity: -5.0
+    linear_max_velocity: 5.0
+
+    linear_has_acceleration_limits: true
+    max_acceleration: 10.0
+    min_acceleration: -10.0
+
+    angular_has_acceleration_limits: true
+    angular_max_acceleration: 2.0
+    angular_min_acceleration: -2.0
+
 
 
