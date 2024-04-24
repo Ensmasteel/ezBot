@@ -17,8 +17,8 @@ omnidirectional_controller:
       - roue_arriere_joint
       - roue_droite_joint
 
-    robot_radius: 0.1
-    wheel_radius: 0.053112205
+    robot_radius: 0.25
+    wheel_radius: 0.06
     gamma: 30.0 # angle between body fixed y axis and the normal of wheel3
 
     publish_rate: 50.0
