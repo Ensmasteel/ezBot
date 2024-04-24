@@ -188,8 +188,8 @@ CallbackReturn OmnidirectionalController::on_configure(
     odom_params_.linear_has_acceleration_limits = linear_has_acceleration_limits.as_bool();
   }
   if (odom_params_.linear_has_acceleration_limits) {
-    odom_params_.linear_min_acceleration = node_->get_parameter("min_acceleration").as_double();
-    odom_params_.linear_max_acceleration = node_->get_parameter("max_acceleration").as_double();
+    odom_params_.linear_min_acceleration = node_->get_parameter("linear_min_acceleration").as_double();
+    odom_params_.linear_max_acceleration = node_->get_parameter("linear_max_acceleration").as_double();
   }
 
   auto linear_has_jerk_limits = node_->get_parameter("linear_has_jerk_limits");
@@ -200,8 +200,8 @@ CallbackReturn OmnidirectionalController::on_configure(
     odom_params_.linear_has_jerk_limits = linear_has_jerk_limits.as_bool();
   }
   if (odom_params_.linear_has_jerk_limits) {
-    odom_params_.linear_min_jerk = node_->get_parameter("min_jerk").as_double();
-    odom_params_.linear_max_jerk = node_->get_parameter("max_jerk").as_double();
+    odom_params_.linear_min_jerk = node_->get_parameter("linear_min_jerk").as_double();
+    odom_params_.linear_max_jerk = node_->get_parameter("linear_max_jerk").as_double();
   }
 
 
