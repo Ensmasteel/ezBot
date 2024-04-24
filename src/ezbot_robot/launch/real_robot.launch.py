@@ -72,7 +72,7 @@ def generate_launch_description():
         arguments=['omnidirectional_controller'],
     )
     delayed_omnidrive_spawner = TimerAction(
-        period=10.0,
+        period=1.0,
         actions=[omnidrive_spawner],
     )
 
