@@ -176,8 +176,8 @@ CallbackReturn OmnidirectionalController::on_configure(
     odom_params_.linear_has_velocity_limits = linear_has_velocity_limits.as_bool();
   }
   if (odom_params_.linear_has_velocity_limits) {
-    odom_params_.linear_min_velocity = node_->get_parameter("min_velocity").as_double();
-    odom_params_.linear_max_velocity = node_->get_parameter("max_velocity").as_double();
+    odom_params_.linear_min_velocity = node_->get_parameter("linear_min_velocity").as_double();
+    odom_params_.linear_max_velocity = node_->get_parameter("linear_max_velocity").as_double();
   }
 
   auto linear_has_acceleration_limits = node_->get_parameter("linear_has_acceleration_limits");
@@ -255,7 +255,7 @@ CallbackReturn OmnidirectionalController::on_configure(
     odom_params_.angular_min_jerk, odom_params_.angular_max_jerk);
 
   const Twist empty_twist;
-  
+
   previous_commands_.emplace(empty_twist);
   previous_commands_.emplace(empty_twist);
 
