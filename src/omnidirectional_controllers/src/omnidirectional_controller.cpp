@@ -472,6 +472,7 @@ controller_interface::return_type OmnidirectionalController::update(
     odometry_message_.pose.pose.orientation.w = orientation.w();
     odometry_message_.twist.twist.linear = cmd_vel_->twist.linear;
     odometry_message_.twist.twist.angular = cmd_vel_->twist.angular;
+    odometry_message_.header.frame_id = odom_params_.odom_frame_id;
     odometry_publisher_->publish(odometry_message_);
   }
 
