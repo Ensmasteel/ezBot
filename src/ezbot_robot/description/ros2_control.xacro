@@ -16,7 +16,7 @@
             <param name="baudrate">115200</param>
 
             <param name="timeout_ms">10000</param>
-            <param name="enc_counts_per_rev">3600</param>
+            <param name="enc_counts_per_rev">1600</param>
         </hardware>
   
 
