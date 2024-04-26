@@ -17,7 +17,7 @@ omnidirectional_controller:
       - roue_arriere_joint
       - roue_droite_joint
 
-    robot_radius: 0.25
+    robot_radius: 0.15
     wheel_radius: 0.06
 
     publish_rate: 50.0
