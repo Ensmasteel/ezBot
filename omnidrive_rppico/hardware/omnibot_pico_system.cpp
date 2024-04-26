@@ -249,10 +249,10 @@ hardware_interface::return_type omnidrive_rppico ::OmniDriveRpPicoHardware::writ
     return hardware_interface::return_type::ERROR;
   }
 
-  int motor_f_counts_per_loop = wheel_f_.cmd / wheel_f_.rads_per_count / cfg_.loop_rate;
-  int motor_l_counts_per_loop = wheel_l_.cmd / wheel_l_.rads_per_count / cfg_.loop_rate;
-  int motor_b_counts_per_loop = wheel_b_.cmd / wheel_b_.rads_per_count / cfg_.loop_rate;
-  int motor_r_counts_per_loop = wheel_r_.cmd / wheel_r_.rads_per_count / cfg_.loop_rate;
+  int motor_f_counts_per_loop = wheel_f_.cmd / wheel_f_.rads_per_count;
+  int motor_l_counts_per_loop = wheel_l_.cmd / wheel_l_.rads_per_count;
+  int motor_b_counts_per_loop = wheel_b_.cmd / wheel_b_.rads_per_count;
+  int motor_r_counts_per_loop = wheel_r_.cmd / wheel_r_.rads_per_count;
   
 
 
