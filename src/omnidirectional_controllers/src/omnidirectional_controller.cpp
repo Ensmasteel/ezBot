@@ -439,10 +439,21 @@ controller_interface::return_type OmnidirectionalController::update(
   double & linear_y_command = command.twist.linear.y;
   double & angular_command = command.twist.angular.z;
 
+  auto & last_command = previous_commands_.back().twist;
+  auto & second_to_last_command = previous_commands_.front().twist;
+
+  limiter_linear_.limit(linear_x_command, second_to_last_command.linear.x, last_command.linear.x, 
+                        period.seconds());
+  limiter_linear_.limit(linear_y_command, second_to_last_command.linear.y, last_command.linear.y,
+                        period.seconds());
+
+  limiter_angular_.limit(angular_command, second_to_last_command.angular.z, last_command.angular.z,
+                        period.seconds());
+
 
   if (odom_params_.open_loop) {
     odometry_.updateOpenLoop(
-      {cmd_vel_->twist.linear.x,  cmd_vel_->twist.linear.y, cmd_vel_->twist.angular.z},
+      {linear_x_command,  linear_y_command, angular_command},
       period.seconds());
   } else {
     std::vector<double> wheels_angular_velocity({0, 0, 0, 0});
@@ -490,16 +501,7 @@ controller_interface::return_type OmnidirectionalController::update(
     odometry_transform_publisher_->publish(odometry_transform_message_);
   }
 
-  auto & last_command = previous_commands_.back().twist;
-  auto & second_to_last_command = previous_commands_.front().twist;
 
-  limiter_linear_.limit(linear_x_command, second_to_last_command.linear.x, last_command.linear.x, 
-                        period.seconds());
-  limiter_linear_.limit(linear_y_command, second_to_last_command.linear.y, last_command.linear.y,
-                        period.seconds());
-
-  limiter_angular_.limit(angular_command, second_to_last_command.angular.z, last_command.angular.z,
-                        period.seconds());
 
 
   previous_commands_.pop();
