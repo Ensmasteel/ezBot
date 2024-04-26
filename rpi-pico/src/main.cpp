@@ -60,6 +60,10 @@ void setup() {
   digitalWrite(ENABLE_PIN, LOW);
 
   // microstepping option : 
+  // Currently 1/8th steps
+  // https://wiki.fysetc.com/TMC2208/#motor-current-setting
+  // MS1 <-> CFG1
+  // MS2 <-> CFG2
   digitalWrite(CFG1_PIN, LOW);
   digitalWrite(CFG2_PIN, LOW);
 
