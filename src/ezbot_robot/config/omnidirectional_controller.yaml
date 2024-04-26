@@ -38,8 +38,8 @@ omnidirectional_controller:
     linear_max_velocity: 5.0
 
     linear_has_acceleration_limits: true
-    linear_max_acceleration: 10.0
-    linear_min_acceleration: -10.0
+    linear_max_acceleration: 2.0
+    linear_min_acceleration: -2.0
 
     angular_has_acceleration_limits: true
     angular_max_acceleration: 2.0
