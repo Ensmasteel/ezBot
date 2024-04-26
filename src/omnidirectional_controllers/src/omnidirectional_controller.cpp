@@ -65,7 +65,6 @@ CallbackReturn OmnidirectionalController::on_init() {
 
     auto_declare<double>("robot_radius", robot_params_.robot_radius);
     auto_declare<double>("wheel_radius", robot_params_.wheel_radius);
-    auto_declare<double>("gamma", robot_params_.gamma);
 
     auto_declare<std::string>("odom_frame_id", odom_params_.odom_frame_id);
     auto_declare<std::string>("base_frame_id", odom_params_.base_frame_id);
@@ -130,8 +129,7 @@ CallbackReturn OmnidirectionalController::on_configure(
 
   robot_params_.robot_radius = node_->get_parameter("robot_radius").as_double();
   robot_params_.wheel_radius = node_->get_parameter("wheel_radius").as_double();
-  robot_params_.gamma = node_->get_parameter("gamma").as_double();
-  robot_params_.gamma = DEG2RAD(robot_params_.gamma);
+
 
   omni_robot_kinematics_.setRobotParams(robot_params_);
   odometry_.setRobotParams(robot_params_);
@@ -477,15 +475,19 @@ controller_interface::return_type OmnidirectionalController::update(
     odometry_publisher_->publish(odometry_message_);
   }
 
-  // if (odom_params_.enable_odom_tf) {
-  //   odometry_transform_message_.header.stamp = current_time;
-  //   odometry_transform_message_.transform.translation.x = odometry_.getPose().x;
-  //   odometry_transform_message_.transform.translation.y = odometry_.getPose().y;
-  //   odometry_transform_message_.transform.rotation.x = orientation.x();
-  //   odometry_transform_message_.transform.rotation.y = orientation.y();
-  //   odometry_transform_message_.transform.rotation.z = orientation.z();
-  //   odometry_transform_message_.transform.rotation.w = orientation.w();
-  // }
+  if (odom_params_.enable_odom_tf) {
+    
+    auto & transform = odometry_transform_message_.transforms.front();
+    transform.header.stamp = current_time;
+    transform.transform.translation.x = odometry_.getPose().x;
+    transform.transform.translation.y = odometry_.getPose().y;
+    transform.transform.rotation.x = orientation.x();
+    transform.transform.rotation.y = orientation.y();
+    transform.transform.rotation.z = orientation.z();
+    transform.transform.rotation.w = orientation.w();
+
+    odometry_transform_publisher_->publish(odometry_transform_message_);
+  }
 
   auto & last_command = previous_commands_.back().twist;
   auto & second_to_last_command = previous_commands_.front().twist;

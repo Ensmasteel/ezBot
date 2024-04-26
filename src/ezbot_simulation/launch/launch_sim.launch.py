@@ -80,6 +80,6 @@ def generate_launch_description():
         spawn_entity,
         rsp2,
         spawn_entity2,
-        gazebo,
-        joystick
+        gazebo
+        #joystick
     ])

@@ -138,8 +138,6 @@ protected:
   void velocityCommandStampedCallback(const geometry_msgs::msg::TwistStamped::SharedPtr cmd_vel);
   void velocityCommandUnstampedCallback(const geometry_msgs::msg::Twist::SharedPtr cmd_vel);
   geometry_msgs::msg::TwistStamped::SharedPtr cmd_vel_;
-  double cos_gamma{0};
-  double sin_gamma{0};
 
   std::shared_ptr<rclcpp_lifecycle::LifecycleNode> node_;
 };

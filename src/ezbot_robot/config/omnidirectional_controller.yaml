@@ -19,7 +19,6 @@ omnidirectional_controller:
 
     robot_radius: 0.25
     wheel_radius: 0.06
-    gamma: 30.0 # angle between body fixed y axis and the normal of wheel3
 
     publish_rate: 50.0
     odom_frame_id: odom
