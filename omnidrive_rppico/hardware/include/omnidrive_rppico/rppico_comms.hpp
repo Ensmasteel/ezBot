@@ -111,8 +111,7 @@ public:
     std::stringstream ss;
     ss << "m " << val_1 << " " << val_2 << " " << val_3 << " " << val_4 << "\r";
     send_msg(ss.str());
-    RCLCPP_INFO(rclcpp::get_logger("rppico_comms"), "Sent: %s", ss.str().c_str());
-  }
+    }
 
   void set_pid_values(int k_p, int k_d, int k_i, int k_o)
   {

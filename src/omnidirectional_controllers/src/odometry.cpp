@@ -30,6 +30,10 @@
 
 #include "omnidirectional_controllers/types.hpp"
 
+//for the temporary log
+#include <iostream>
+
+
 namespace omnidirectional_controllers {
 
 Odometry::Odometry() {}
@@ -74,6 +78,9 @@ void Odometry::update(const std::vector<double> & wheels_vel, double dt) {
   }
   this->dt_ = dt;
   this->body_vel_ = robot_kinematics_.getBodyVelocity(wheels_vel);
+  //temporary log
+  std::cout << "body_vel_: " << body_vel_.vx << " " << body_vel_.vy << " " << body_vel_.omega << std::endl;
+
   this->integrateVelocities();
 }
 
