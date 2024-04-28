@@ -87,20 +87,29 @@ def generate_launch_description():
     )   
 
 
+    # don't know what the parameters do
+    imu_complementary_filter = Node(
+        package='imu_complementary_filter',
+        executable='complementary_filter_node',
+        name='complementary_filter_gain_node',
+        output='screen',
+        parameters=[
+            {'do_bias_estimation': True},
+            {'do_adaptive_gain': True},
+            {'use_mag': False},
+            {'gain_acc': 0.01},
+            {'gain_mag': 0.01},
+        ],
+)
+
+
+
 
     #joystick = IncludeLaunchDescription(
     #    PythonLaunchDescriptionSource([os.path.join(
     #        get_package_share_directory("teleop_twist_joy"),'launch','teleop-launch.py'
     #    )]), launch_arguments={'config_filepath': '/home/vincent/joystick.yaml','joy_vel':'/omnidirectional_controller/cmd_vel_unstamped'}.items(),
     #    
-    #)
-
-    #homemade_controller = Node(
-    #    package='ezbot_robot',
-    #    executable='homemade_controller',
-    #    name='homemade_controller',
-    #    output='screen',
-    #    parameters=[{'log_level': logger}]
     #)
 
     return LaunchDescription([
