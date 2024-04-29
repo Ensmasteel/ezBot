@@ -98,7 +98,7 @@ private:
   RpPicoComs comms_;
   Config cfg_;
 
-  std::array<Servo, 12> servos_;
+  std::array<Servo, 13> servos_;
 
 };
 
