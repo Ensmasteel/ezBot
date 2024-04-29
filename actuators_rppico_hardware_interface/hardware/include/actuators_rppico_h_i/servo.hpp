@@ -25,7 +25,7 @@ class Servo
     void setup(const std::string &servo_name, int servo_number)
     {
       name = servo_name;
-      servo_number = servo_number;
+      this->servo_number = servo_number;
     }
 
 
