@@ -88,8 +88,16 @@ def generate_launch_description():
 
     actuators_spawner = Node(
         package='controller_manager',
-
+        executable='spawner',
+        arguments=['actuator_controller'],
     )
+
+    delayed_actuators_spawner = TimerAction(
+        period=1.0,
+        actions=[actuators_spawner],
+    )
+
+
     imu_node =   Node(
             package='ros_qwiic_icm_20948',
             executable='ros_qwiic_icm_20948',
@@ -133,6 +141,7 @@ def generate_launch_description():
         delayed_joint_broad_spawner,
         imu_node,
         delayed_imu_filter,
+        delayed_actuators_spawner,
         #joystick,
         
     ])
