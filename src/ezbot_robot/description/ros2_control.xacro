@@ -54,7 +54,7 @@
         </joint>
     </ros2_control>
 
-     <ros2_control name="hellothere" type="system">
+     <ros2_control name="helloagain" type="system">
     
       
         <hardware>
