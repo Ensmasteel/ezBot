@@ -107,9 +107,12 @@ def generate_launch_description():
             {'gain_acc': 0.01},
             {'gain_mag': 0.01},
         ],
-)
+    )
 
-
+    delayed_imu_filter = TimerAction(
+        period=5.0,
+        action = [imu_complementary_filter],
+    )
 
 
     #joystick = IncludeLaunchDescription(
@@ -125,7 +128,7 @@ def generate_launch_description():
         delayed_omnidrive_spawner,
         delayed_joint_broad_spawner,
         imu_node,
-        imu_complementary_filter,
+        delayed_imu_filter,
         #joystick,
         
     ])
