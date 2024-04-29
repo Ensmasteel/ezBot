@@ -5,7 +5,7 @@
 #ifndef COMMANDS_HPP
 #define COMMANDS_HPP
 
-#define READ_ENCODERS  'e'
+#define SERVO_CMD  's'
 #define MOTOR_SPEEDS   'm'
 #define ACCELERATION   'a'
 #define MAX_SPEED      's'

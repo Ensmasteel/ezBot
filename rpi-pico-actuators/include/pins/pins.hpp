@@ -1,17 +1,17 @@
-#define ENABLE_PIN 2
+#include <array>
 
-#define CFG1_PIN 16
-#define CFG2_PIN 17
-
-#define DIR_PIN1 14
-#define STEP_PIN1 15
-
-
-#define DIR_PIN2 12
-#define STEP_PIN2 13
-
-#define DIR_PIN3 10
-#define STEP_PIN3 11
-
-#define DIR_PIN4 8
-#define STEP_PIN4 9
+constexpr std::array<int, 13> servoGpioNumbers = {
+    /*placeholder*/ 0,
+    /* servo 1 */ 2,
+    /* servo 2 */ 3,
+    /* servo 3 */ 6,
+    /* servo 4 */ 7,
+    /* servo 5 */ 8,
+    /* servo 6 */ 9,
+    /* servo 7 */ 10,
+    /* servo 8 */ 11,
+    /* servo 9 */ 12,
+    /* servo 10 */ 13,
+    /* servo 11 */ 14,
+    /* servo 12 */ 14
+};

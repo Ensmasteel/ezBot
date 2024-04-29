@@ -2,22 +2,16 @@
 
 #include <hardware/uart.h>
 
-#include <stepper/stepper.hpp>
+#include <servo/servo_actuator.hpp>
 #include "commands/commands.hpp"
 #include "pins/pins.hpp"
 
 UART Serial2(4,5, NC, NC);
 
-// AccelStepper stepper1(AccelStepper::DRIVER, STEP_PIN1, DIR_PIN1);
-// AccelStepper stepper2(AccelStepper::DRIVER, STEP_PIN2, DIR_PIN2);
-// AccelStepper stepper3(AccelStepper::DRIVER, STEP_PIN3, DIR_PIN3);
-// AccelStepper stepper4(AccelStepper::DRIVER, STEP_PIN4, DIR_PIN4);
+ServoActuator servo1(servoGpioNumbers[1], 20, 180, 90);
 
+ServoActuator servos[] = {servo1};
 
-stepper  stepper1 = stepper(STEP_PIN1, DIR_PIN1, ENABLE_PIN, 0, 0, 2000, 1000);
-stepper  stepper2 = stepper(STEP_PIN2, DIR_PIN2, ENABLE_PIN, 0, 0, 2000, 1000);
-stepper  stepper3 = stepper(STEP_PIN3, DIR_PIN3, ENABLE_PIN, 0, 0, 2000, 1000);
-stepper  stepper4 = stepper(STEP_PIN4, DIR_PIN4, ENABLE_PIN, 0, 0, 2000, 1000);
 
 int arg = 0;
 int i = 0;
@@ -37,35 +31,13 @@ long arg3;
 long arg4;
 
 
+
 void setup() {
 
   Serial.begin(115200);
   Serial2.begin(115200);
   Serial.println("Hello World !");
 
-
-  stepper  stepper1 = stepper(STEP_PIN1, DIR_PIN1, ENABLE_PIN, 0, 0, 1000, 10000);
-  stepper  stepper2 = stepper(STEP_PIN2, DIR_PIN2, ENABLE_PIN, 0, 0, 1000, 10000);
-  stepper  stepper3 = stepper(STEP_PIN3, DIR_PIN3, ENABLE_PIN, 0, 0, 1000, 10000);
-  stepper  stepper4 = stepper(STEP_PIN4, DIR_PIN4, ENABLE_PIN, 0, 0, 1000, 10000);
-
-
-  // pin mode setup
-  pinMode(ENABLE_PIN, OUTPUT);
-  pinMode(CFG1_PIN, OUTPUT);
-  pinMode(CFG2_PIN, OUTPUT);
-
-
-  // enable the stepper drivers
-  digitalWrite(ENABLE_PIN, LOW);
-
-  // microstepping option : 
-  // Currently 1/8th steps
-  // https://wiki.fysetc.com/TMC2208/#motor-current-setting
-  // MS1 <-> CFG1
-  // MS2 <-> CFG2
-  digitalWrite(CFG1_PIN, LOW);
-  digitalWrite(CFG2_PIN, LOW);
 
 
 }
@@ -95,45 +67,23 @@ int runCommand(){
   arg4 = atoi(argv4);
 
   switch(cmd){
-    case MOTOR_SPEEDS:
-      Serial.print("MOTOR_SPEEDS ");
+    case SERVO_CMD:
+      Serial.print("SERVO number : ");
       Serial.print(arg1);
-      Serial.print(" ");
+      Serial.print(" angle : ");
       Serial.print(arg2);
-      Serial.print(" ");
-      Serial.print(arg3);
-      Serial.print(" ");
-      Serial.println(arg4);
 
-    
-      //run the actual steppers
-      stepper1.setTargetSpeed(arg1);
-      stepper2.setTargetSpeed(arg2);
-      stepper3.setTargetSpeed(arg3);
-      stepper4.setTargetSpeed(arg4);
-
-
+      if (arg1 >= 1 && arg1 <= 12){
+        servos[arg1-1].write(arg2);
+      }
+      else {
+        Serial.print("Invalid servo number: ");
+        Serial.println(arg1);
+      }
 
       break;
-    case ACCELERATION:
-      Serial.print("ACCELERATION ");
-      Serial.print(arg1);
 
-      stepper1.setAcceleration(arg1);
-      stepper2.setAcceleration(arg1);
-      stepper3.setAcceleration(arg1);
-      stepper4.setAcceleration(arg1);
-      break;
-    case MAX_SPEED:
-      Serial.print("MAX_SPEED ");
-      Serial.print(arg1);
 
-      stepper1.setMaxSpeed(arg1);
-      stepper2.setMaxSpeed(arg1);
-      stepper3.setMaxSpeed(arg1);
-      stepper4.setMaxSpeed(arg1);
-      break;
-    // TODO : add a command for sending back the "encoder" values
     default:
       Serial.print("Unknown command: ");
       Serial.println(cmd);
@@ -148,15 +98,8 @@ void loop() {
 
   //run speed each motor
 
-  stepper1.run();
-  stepper2.run();
-  stepper3.run();
-  stepper4.run();
-
-  stepper2.log();
-
-  while(Serial2.available() > 0){
-    chr = Serial2.read();
+  while(Serial.available() > 0){
+    chr = Serial.read();
 
     // if the chr is a carriage return
     if (chr == '\r'){
