@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(actuators_rppico_h_i LANGUAGES CXX)
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
-  add_compile_options(-Wall -Wextra -Wno-unused-variable)
+  add_compile_options(-Wno-unused-variable)
 endif()
 
 # find dependencies

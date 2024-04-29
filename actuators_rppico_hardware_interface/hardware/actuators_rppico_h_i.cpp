@@ -179,7 +179,11 @@ hardware_interface::CallbackReturn ActuatorsRpPicoHardware::on_deactivate(
 hardware_interface::return_type ActuatorsRpPicoHardware::read(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & period)
 {
-
+  if (!comms_.connected())
+  {
+    return hardware_interface::return_type::ERROR;
+  }
+  
   return hardware_interface::return_type::OK;
 }
 
