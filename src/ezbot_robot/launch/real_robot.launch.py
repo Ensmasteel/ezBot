@@ -111,7 +111,7 @@ def generate_launch_description():
 
     delayed_imu_filter = TimerAction(
         period=5.0,
-        action = [imu_complementary_filter],
+        actions = [imu_complementary_filter],
     )
 
 
