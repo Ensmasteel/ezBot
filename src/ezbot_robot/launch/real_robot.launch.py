@@ -86,6 +86,13 @@ def generate_launch_description():
         actions=[joint_broad_spawner],
     )   
 
+    imu_node =   Node(
+            package='ros_qwiic_icm_20948',
+            executable='ros_qwiic_icm_20948',
+            name='ros_qwiic_icm_20948',
+            output='screen'
+    )
+
 
     # don't know what the parameters do
     imu_complementary_filter = Node(
@@ -116,8 +123,9 @@ def generate_launch_description():
         rsp,
         delayed_controller_manager,
         delayed_omnidrive_spawner,
-        delayed_joint_broad_spawner
+        delayed_joint_broad_spawner,
+        imu_node,
+        imu_complementary_filter,
         #joystick,
-        #homemade_controller
         
     ])
