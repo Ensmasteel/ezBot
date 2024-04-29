@@ -92,9 +92,9 @@ hardware_interface::CallbackReturn ActuatorsRpPicoHardware::on_init(
 
    
   }
+  }
   RCLCPP_INFO(rclcpp::get_logger("ActuatorsRpPicoHardware"), "Successfully set up hardware interfaces");
   return hardware_interface::CallbackReturn::SUCCESS;
-}
 }
 std::vector<hardware_interface::StateInterface> ActuatorsRpPicoHardware::export_state_interfaces()
 {

@@ -103,9 +103,9 @@ hardware_interface::CallbackReturn OmniDriveRpPicoHardware::on_init(
         joint.state_interfaces[1].name.c_str(), hardware_interface::HW_IF_VELOCITY);
       return hardware_interface::CallbackReturn::ERROR;
     }
+  }
   RCLCPP_INFO(rclcpp::get_logger("OmniDriveRpPicoHardware"), "Successfully set up hardware interfaces");
   return hardware_interface::CallbackReturn::SUCCESS;
-  }
 }
 
 std::vector<hardware_interface::StateInterface> OmniDriveRpPicoHardware::export_state_interfaces()
