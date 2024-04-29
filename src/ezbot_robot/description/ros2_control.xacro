@@ -54,4 +54,26 @@
         </joint>
     </ros2_control>
 
+     <ros2_control name="hellothere" type="system">
+    
+      
+        <hardware>
+            <plugin>actuators_rppico_h_i/ActuatorsRpPicoHardware</plugin>
+            <param name="servo1_name">renverseurDePano</param>
+            <param name="loop_rate">30</param>
+            <param name="device">/dev/ttyAMA2</param>
+            <param name="baudrate">115200</param>
+            <param name="timeout_ms">10000</param>
+        </hardware>
+  
+
+        <joint name="renverseurDePano">
+            <command_interface name="position"> 
+                <param name="min">0</param>
+                <param name="max">180</param> 
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+    </ros2_control>
+
 </robot>

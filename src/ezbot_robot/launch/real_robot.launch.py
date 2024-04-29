@@ -86,6 +86,10 @@ def generate_launch_description():
         actions=[joint_broad_spawner],
     )   
 
+    actuators_spawner = Node(
+        package='controller_manager',
+
+    )
     imu_node =   Node(
             package='ros_qwiic_icm_20948',
             executable='ros_qwiic_icm_20948',

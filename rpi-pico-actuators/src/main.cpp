@@ -98,8 +98,8 @@ void loop() {
 
   //run speed each motor
 
-  while(Serial.available() > 0){
-    chr = Serial.read();
+  while(Serial2.available() > 0){
+    chr = Serial2.read();
 
     // if the chr is a carriage return
     if (chr == '\r'){

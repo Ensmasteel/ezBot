@@ -9,6 +9,11 @@ controller_manager:
     omnidirectional_controller:
       type: omnidirectional_controllers/OmnidirectionalController
 
+    actuator_controller:
+      type: position_controllers/JointGroupPositionController
+    
+
+
 omnidirectional_controller:
   ros__parameters:
     wheel_names:
@@ -17,7 +22,7 @@ omnidirectional_controller:
       - roue_arriere_joint
       - roue_droite_joint
 
-    robot_radius: 0.15
+    robot_radius: 0.19
     wheel_radius: 0.03
 
     publish_rate: 30.0
@@ -46,4 +51,7 @@ omnidirectional_controller:
     angular_min_acceleration: -2.0
 
 
-
+actuator_controller:
+  ros__parameters:
+    joints:
+      - renverseurDePano

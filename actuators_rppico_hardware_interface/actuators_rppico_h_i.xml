@@ -1,0 +1,10 @@
+<library path="actuators_rppico_h_i">
+  <class name="actuators_rppico_h_i/ActuatorsRpPicoHardware"
+         type="actuators_rppico_h_i::ActuatorsRpPicoHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      Hardware interface to commuicate with the raspberry pico that control the actuators (mainly servos)  
+    </description>
+
+  </class>
+</library>
