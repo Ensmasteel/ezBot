@@ -45,6 +45,8 @@ hardware_interface::CallbackReturn ActuatorsRpPicoHardware::on_init(
 
   for (int i = 1; i <= 12; i++) {
     if (cfg_.servo_names[i] != "") {
+      RCLCPP_INFO(
+        rclcpp::get_logger("ActuatorsRpPicoHardware"), "Setting up servo %s", cfg_.servo_names[i].c_str());
       servos_[i].setup(cfg_.servo_names[i], i);
     }
   }

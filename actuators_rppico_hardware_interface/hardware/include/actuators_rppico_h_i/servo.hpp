@@ -14,17 +14,19 @@ class Servo
     double cmd = 0;
     double angle = 0;
 
-    Servo() = default;
+    Servo()
+    {
+    }
 
     Servo(const std::string &servo_name, int servo_number)
     {
-      setup(servo_name, servo_number);
+      this->setup(servo_name, servo_number);
     }
 
     
     void setup(const std::string &servo_name, int servo_number)
     {
-      name = servo_name;
+      this->name = servo_name;
       this->servo_number = servo_number;
     }
 

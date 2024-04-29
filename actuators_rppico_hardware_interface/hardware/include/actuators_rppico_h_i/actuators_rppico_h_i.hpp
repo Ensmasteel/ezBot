@@ -49,7 +49,7 @@ struct Config
   int baud_rate = 0;
   int timeout_ms = 0;
 
-};
+};;
 
 
 public:
