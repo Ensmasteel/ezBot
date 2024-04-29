@@ -41,7 +41,7 @@ class ActuatorsRpPicoHardware : public hardware_interface::SystemInterface
 
 struct Config
 {
-  std::array<std::string, 12> servo_names = {};
+  std::array<std::string, 13> servo_names = {"","","","","","","","","","","","",""};
 
   float loop_rate = 0.0;
 
