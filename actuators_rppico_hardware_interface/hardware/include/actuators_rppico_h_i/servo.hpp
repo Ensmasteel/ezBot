@@ -16,13 +16,13 @@ class Servo
 
     Servo() = default;
 
-    Servo(const std::string servo_name, int servo_number)
+    Servo(const std::string &servo_name, int servo_number)
     {
       setup(servo_name, servo_number);
     }
 
     
-    void setup(const std::string servo_name, int servo_number)
+    void setup(const std::string &servo_name, int servo_number)
     {
       name = servo_name;
       this->servo_number = servo_number;
