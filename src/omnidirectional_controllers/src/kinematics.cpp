@@ -61,9 +61,9 @@ std::vector<double> Kinematics::getWheelsAngularVelocities(RobotVelocity vel) {
   double wl = vel.omega * robot_params_.robot_radius;
 
   angular_vel_vec_[0] = (wl + vy) / robot_params_.wheel_radius;
-  angular_vel_vec_[1] = (wl - vx) / robot_params_.wheel_radius;
+  angular_vel_vec_[1] = -(wl - vx) / robot_params_.wheel_radius;
   angular_vel_vec_[2] = (wl - vy) / robot_params_.wheel_radius;
-  angular_vel_vec_[3] = (wl + vx) / robot_params_.wheel_radius;
+  angular_vel_vec_[3] = -(wl + vx) / robot_params_.wheel_radius;
   
   return angular_vel_vec_;
 }
