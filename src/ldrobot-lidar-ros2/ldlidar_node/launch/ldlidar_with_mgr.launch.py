@@ -50,6 +50,7 @@ def generate_launch_description():
         package='nav2_lifecycle_manager',
         executable='lifecycle_manager',
         name='lifecycle_manager',
+        namespace='ldlidar_node', #trying to isolate nav2 and the LIDAR
         output='screen',
         parameters=[
             # YAML files
