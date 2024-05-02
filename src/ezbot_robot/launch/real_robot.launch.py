@@ -112,7 +112,7 @@ def generate_launch_description():
             get_package_share_directory('ldlidar'),'launch', 'ldlidar_with_mgr.py'
         )]),
     )
-    
+
 
 
 
@@ -152,6 +152,7 @@ def generate_launch_description():
         imu_node,
         delayed_imu_filter,
         delayed_actuators_spawner,
+        lidar_with_mgr,
         #joystick,
         
     ])
