@@ -106,10 +106,27 @@ def generate_launch_description():
     )
 
 
+
     lidar_with_mgr = Node(
         package='ldlidar_node',
         executable='ldlidar_with_mgr.py',
         output='screen'
+    )
+
+
+    # don't know what the parameters do
+    imu_complementary_filter = Node(
+        package='imu_complementary_filter',
+        executable='complementary_filter_node',
+        name='complementary_filter_gain_node',
+        output='screen',
+        parameters=[
+            {'do_bias_estimation': True},
+            {'do_adaptive_gain': True},
+            {'use_mag': False},
+            {'gain_acc': 0.01},
+            {'gain_mag': 0.01},
+        ],
     )
 
     delayed_imu_filter = TimerAction(
@@ -133,7 +150,7 @@ def generate_launch_description():
         imu_node,
         delayed_imu_filter,
         delayed_actuators_spawner,
-        lidar_with_mgr,
+        lidar_with_mgr
         #joystick,
         
     ])
