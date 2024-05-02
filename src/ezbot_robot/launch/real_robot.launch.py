@@ -109,7 +109,7 @@ def generate_launch_description():
 
     lidar_with_mgr = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('ldlidar_node'),'launch', 'ldlidar_with_mgr.py'
+            get_package_share_directory('ldlidar_node'),'launch', 'ldlidar_with_mgr.launch.py'
         )]),
     )
 
