@@ -3,11 +3,11 @@
 
     <joint name="imu_joint" type="fixed">
         <parent link="chassis"/>
-        <child link="imu_link"/>
+        <child link="imu"/>
         <origin xyz="0.055 0 0.175" rpy="0 0 0"/>
     </joint>
 
-    <link name="imu_link">
+    <link name="imu">
         <visual>
             <geometry>
                 <box size="0.03 0.03 0.03"/>
@@ -17,7 +17,7 @@
     </link>
 
 
-    <gazebo reference="imu_link">
+    <gazebo reference="imu">
         <material>Gazebo/Black</material>
 
         <gravity>true</gravity>
@@ -28,12 +28,12 @@
             <topic>__default_topic__</topic>
             <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
                 <topicName>imu</topicName>
-                <bodyName>imu_link</bodyName>
+                <bodyName>imu</bodyName>
                 <updateRateHZ>10.0</updateRateHZ>
                 <gaussianNoise>0.0</gaussianNoise>
                 <xyzOffset>0 0 0</xyzOffset>
                 <rpyOffset>0 0 0</rpyOffset>
-                <frameName>imu_link</frameName>
+                <frameName>imu</frameName>
                 <initialOrientationAsReference>false</initialOrientationAsReference>
             </plugin>
             <pose>0 0 0 0 0 0</pose>
