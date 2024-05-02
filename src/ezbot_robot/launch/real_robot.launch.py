@@ -48,12 +48,13 @@ def generate_launch_description():
     #controller_params_file = os.path.join(get_package_share_directory('ezbot_robot'), 'config', 'controllers.yaml')
     controller_params_file = os.path.join(get_package_share_directory('ezbot_robot'), 'config', 'omnidirectional_controller.yaml')
 
- 
+    robot_description = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
+
+
     controller_manager = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[controller_params_file],
-        remappings = [('/controller_manager/robot_description', '/robot_description')],
+        parameters=[robot_description],
     )
 
 
@@ -61,7 +62,7 @@ def generate_launch_description():
 
 
     delayed_controller_manager = TimerAction(
-        period=2.0,
+        period=7.0,
         actions=[controller_manager],
     )
 
@@ -72,7 +73,7 @@ def generate_launch_description():
         arguments=['omnidirectional_controller'],
     )
     delayed_omnidrive_spawner = TimerAction(
-        period=1.0,
+        period=10.0,
         actions=[omnidrive_spawner],
     )
 
@@ -82,7 +83,7 @@ def generate_launch_description():
         arguments=['joint_state_broadcaster'],
     )
     delayed_joint_broad_spawner = TimerAction(
-        period=1.0,
+        period=11.0,
         actions=[joint_broad_spawner],
     )   
 
@@ -93,7 +94,7 @@ def generate_launch_description():
     )
 
     delayed_actuators_spawner = TimerAction(
-        period=1.0,
+        period=12.0,
         actions=[actuators_spawner],
     )
 
