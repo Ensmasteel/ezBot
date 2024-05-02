@@ -107,11 +107,13 @@ def generate_launch_description():
 
 
 
-    lidar_with_mgr = Node(
-        package='ldlidar_node',
-        executable='ldlidar_with_mgr.py',
-        output='screen'
+    lidar_with_mgr = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+            get_package_share_directory('ldlidar'),'launch', 'ldlidar_with_mgr.py'
+        )]),
     )
+    
+
 
 
     # don't know what the parameters do
@@ -150,7 +152,6 @@ def generate_launch_description():
         imu_node,
         delayed_imu_filter,
         delayed_actuators_spawner,
-        lidar_with_mgr
         #joystick,
         
     ])
