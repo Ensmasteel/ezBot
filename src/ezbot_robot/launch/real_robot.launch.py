@@ -48,13 +48,12 @@ def generate_launch_description():
     #controller_params_file = os.path.join(get_package_share_directory('ezbot_robot'), 'config', 'controllers.yaml')
     controller_params_file = os.path.join(get_package_share_directory('ezbot_robot'), 'config', 'omnidirectional_controller.yaml')
 
-    robot_description = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
-
-
+ 
     controller_manager = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[robot_description],
+        parameters=[controller_params_file],
+        remappings = [('/controller_manager/robot_description', '/robot_description')],
     )
 
 
@@ -62,7 +61,7 @@ def generate_launch_description():
 
 
     delayed_controller_manager = TimerAction(
-        period=7.0,
+        period=.0,
         actions=[controller_manager],
     )
 
