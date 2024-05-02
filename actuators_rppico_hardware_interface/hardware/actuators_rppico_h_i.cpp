@@ -58,13 +58,15 @@ hardware_interface::CallbackReturn ActuatorsRpPicoHardware::on_init(
       rclcpp::get_logger("ActuatorsRpPicoHardware"), "Loading joint '%s'", joint.name.c_str());
 
     // servos have exactly one states and one command interface on each joint
-    if (joint.command_interfaces.size() != 1)
+    if (joint.command_interfaces.size() != number_of_servos * 1)
     {
       RCLCPP_FATAL(
         rclcpp::get_logger("ActuatorsRpPicoHardware"),
-        "Joint '%s' has %zu command interfaces found. 1 expected.", joint.name.c_str(),
-        joint.command_interfaces.size());
+        "Joint '%s' has %zu command interfaces found. %i expected.", joint.name.c_str(),
+        joint.command_interfaces.size()), number_of_servos * 1;
       return hardware_interface::CallbackReturn::ERROR;
+    }
+    // TODO verify if every servo has a command interface
     if (joint.command_interfaces[0].name != hardware_interface::HW_IF_POSITION)
     {
       RCLCPP_FATAL(
@@ -74,12 +76,12 @@ hardware_interface::CallbackReturn ActuatorsRpPicoHardware::on_init(
       return hardware_interface::CallbackReturn::ERROR;
     }
 
-    if (joint.state_interfaces.size() != 1)
+    if (joint.state_interfaces.size() != number_of_servos * 1)
     {
       RCLCPP_FATAL(
         rclcpp::get_logger("ActuatorsRpPicoHardware"),
-        "Joint '%s' has %zu state interface. 1 expected.", joint.name.c_str(),
-        joint.state_interfaces.size());
+        "Joint '%s' has %zu state interface. 1 per servo expected ie %i.", joint.name.c_str(),
+        joint.state_interfaces.size()), number_of_servos * 1;
       return hardware_interface::CallbackReturn::ERROR;
     }
 
@@ -93,7 +95,7 @@ hardware_interface::CallbackReturn ActuatorsRpPicoHardware::on_init(
     }
 
    
-  }
+  
   }
   RCLCPP_INFO(rclcpp::get_logger("ActuatorsRpPicoHardware"), "Successfully set up hardware interfaces");
   return hardware_interface::CallbackReturn::SUCCESS;
