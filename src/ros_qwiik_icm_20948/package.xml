@@ -11,7 +11,6 @@
   <depend>std_msgs</depend>
   <depend>sensor_msgs</depend>
   <depend>libboost-system-dev</depend>
-  <depend>libi2c</depend>
   
   <buildtool_depend>ament_cmake</buildtool_depend>
 
