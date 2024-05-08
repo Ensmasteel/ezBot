@@ -47,7 +47,9 @@ bool TiretteNode::init_gpiod(void)
     printf("gpioTirette successful = %d\n",gpioTirette);
     
     int temp;
-    temp = gpiod_line_request_input_flags(gpioline,"Tirette", GPIOD_LINE_BIAS_PULL_UP);
+    // temp = gpiod_line_request_input_flags(gpioline,"Tirette", GPIOD_LINE_BIAS_PULL_UP);
+    
+    temp = gpiod_line_request_input(gpioline,"Tirette");
     printf("gpiod_line_request_input_flags = %d\n",temp);
     return true;
 
