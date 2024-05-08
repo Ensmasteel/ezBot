@@ -17,6 +17,8 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -31,6 +33,20 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+include_directories(include)
+
+
+add_executable(tirette_node src/tirette_node.cpp)
+ament_target_dependencies(tirette_node rclcpp std_msgs)
+
+target_link_libraries(tirette_node gpiod)
+
+install(TARGETS
+  tirette_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 
 install(
   DIRECTORY config launch
