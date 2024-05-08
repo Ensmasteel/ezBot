@@ -11,22 +11,24 @@ void TiretteNode::readGPIO()
     int value;
 
     chip = gpiod_chip_open("/dev/gpiochip0");
+    printf("chip : %p\n", chip);
+
     if (!chip) {
-        // handle error
+        printf("unable to open GPIO\n")
     }
 
     line = gpiod_chip_get_line(chip, 11);
     if (!line) {
-        // handle error
+        printf("unable to get line\n")
     }
 
     if (gpiod_line_request_input(line, "tirette_node") < 0) {
-        // handle error
+        printf("unable to request line\n")
     }
 
     value = gpiod_line_get_value(line);
     if (value < 0) {
-        // handle error
+        printf("unable to get value\n")
     }
 
     message.data = value ? true : false;
