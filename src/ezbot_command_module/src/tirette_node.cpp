@@ -6,30 +6,11 @@ void TiretteNode::readGPIO()
 {
     auto message = std_msgs::msg::Bool();
 
-    struct gpiod_chip *chip;
-    struct gpiod_line *line;
     int value;
 
-    chip = gpiod_chip_open("/dev/gpiochip0");
-    printf("chip : %p\n", chip);
 
-    if (!chip) {
-        printf("unable to open GPIO\n")
-    }
-
-    line = gpiod_chip_get_line(chip, 11);
-    if (!line) {
-        printf("unable to get line\n")
-    }
-
-    if (gpiod_line_request_input(line, "tirette_node") < 0) {
-        printf("unable to request line\n")
-    }
-
-    value = gpiod_line_get_value(line);
-    if (value < 0) {
-        printf("unable to get value\n")
-    }
+    value = gpiod_line_get_value(gpioline);
+    printf("value = %d\n",value);
 
     message.data = value ? true : false;
 

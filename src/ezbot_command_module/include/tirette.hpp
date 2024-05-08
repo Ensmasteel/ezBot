@@ -38,7 +38,7 @@ bool TiretteNode::init_gpiod(void)
       }
 
     gpioline = gpiod_chip_get_line(gpiochip,gpioTirette);
-
+    printf("gpioTirette successful = %d\n",gpioTirette);
     // set  gpio pin INPUT PULL UP 
     gpiod_line_request_input_flags(gpioline,"MyBlink", GPIOD_LINE_BIAS_PULL_UP);
 
