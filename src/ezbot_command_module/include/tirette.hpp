@@ -13,7 +13,7 @@ public:
 
 private:
 
-    int gpioTirette = 11;
+    int gpioTirette = 22;
     rclcpp::Publisher<std_msgs::msg::Bool>::SharedPtr tirette_pub_;
     rclcpp::TimerBase::SharedPtr timer_;
     bool init_gpiod(void);
