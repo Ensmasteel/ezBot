@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>ezbot_robot</name>
+  <name>ezbot_command_module</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Package for all ros nodes related to tje esnot </description>
   <maintainer email="my_email@email.com">MY NAME</maintainer>
   <license>TODO: License declaration</license>
 
@@ -12,11 +12,6 @@
 
   <depend>rclcpp</depend>
   <depend>std_msgs</depend>
-  <depend>cv_bridge</depend>
-  <depend>image_transport</depend>
-  <!-- TODO add controller manager dependency-->
-  <!--
-    removed opencv, even though we need it-->
   <depend>rclpy</depend>
 
   <test_depend>ament_lint_auto</test_depend>

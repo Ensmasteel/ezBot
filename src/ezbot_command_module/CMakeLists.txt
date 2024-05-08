@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(ezbot_robot)
+project(ezbot_command_module)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -33,22 +33,9 @@ if(BUILD_TESTING)
 endif()
 
 install(
-  DIRECTORY config description launch worlds meshes media
+  DIRECTORY config launch
   DESTINATION share/${PROJECT_NAME}
 )
 
-install(
-  DIRECTORY media/
-  DESTINATION $ENV{HOME}/.gazebo/media/
-)
-
-install(
-  DIRECTORY media/
-  DESTINATION $ENV{HOME}/.gazebo/media/
-)
-
-install(PROGRAMS
-  launch/camerapubsub.py
-  DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
