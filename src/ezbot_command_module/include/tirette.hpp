@@ -32,12 +32,18 @@ bool TiretteNode::init_gpiod(void)
   if(gpiochip == NULL)
       gpiochip = gpiod_chip_open_by_name("gpiochip0");
   if(gpiochip == NULL)
-      {
-           printf("unable to open GPIO\n");
-           return false;
-      }
+    {
+        printf("unable to open GPIO\n");
+        return false;
+    }
+    printf("gpiochip successful = %d\n",gpiochip);
 
     gpioline = gpiod_chip_get_line(gpiochip,gpioTirette);
+    if (gpioline == NULL)
+    {
+        printf("unable to get GPIO line\n");
+        return false;
+    }
     printf("gpioTirette successful = %d\n",gpioTirette);
     
     int temp;
