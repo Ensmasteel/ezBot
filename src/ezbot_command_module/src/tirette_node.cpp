@@ -16,9 +16,7 @@ void TiretteNode::readGPIO()
 
     tirette_pub_->publish(message);
 
-    gpiod_line_release(line);
-    gpiod_chip_close(chip);
-}
+ }
 TiretteNode::TiretteNode() : Node("tirette_node")
 {
 
