@@ -26,7 +26,7 @@ class MinimalSubscriber(Node):
         for range_value in msg.ranges:
             if min_distance < range_value < max_distance:
                 # If an object is detected within the specified range, publish a message
-                print("y a un truc")
+                self.get_logger().info("Object detected")
                 self.publisher.publish(String(data='Object detected'))
                 break
 

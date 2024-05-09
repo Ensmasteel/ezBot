@@ -10,7 +10,7 @@ void TiretteNode::readGPIO()
 
 
     value = gpiod_line_get_value(gpioline);
-    printf("value = %d\n",value);
+    RCLCPP_INFO(get_logger(),"value = %d\n",value);
 
     message.data = value ? true : false;
 

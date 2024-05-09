@@ -4,7 +4,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/bool.hpp>
 #include <gpiod.h>
-
+#include <rclcpp/logger.hpp>
 
 class TiretteNode : public rclcpp::Node
 {
@@ -33,24 +33,24 @@ bool TiretteNode::init_gpiod(void)
       gpiochip = gpiod_chip_open_by_name("gpiochip0");
   if(gpiochip == NULL)
     {
-        printf("unable to open GPIO\n");
+        RCLCPP_WARN(get_logger(), "unable to open GPIO");
         return false;
     }
-    printf("gpiochip successful = %d\n",gpiochip);
+    RCLCPP_INFO(get_logger(), "gpiochip successful = %d\n",gpiochip);
 
     gpioline = gpiod_chip_get_line(gpiochip,gpioTirette);
     if (gpioline == NULL)
     {
-        printf("unable to get GPIO line\n");
+        RCLCPP_WARN(get_logger(), "unable to get GPIO line\n");
         return false;
     }
-    printf("gpioTirette successful = %d\n",gpioTirette);
+    RCLCPP_INFO(get_logger(), "gpioTirette successful = %d\n",gpioTirette);
     
     int temp;
     // temp = gpiod_line_request_input_flags(gpioline,"Tirette", GPIOD_LINE_BIAS_PULL_UP);
     
     temp = gpiod_line_request_input(gpioline,"Tirette");
-    printf("gpiod_line_request_input_flags = %d\n",temp);
+    RCLCPP_INFO(get_logger(),"gpiod_line_request_input_flags = %d\n",temp);
     return true;
 
 }
