@@ -18,13 +18,15 @@ class SequenceurHomologation(Node):
         self.tirette = False
         self.detected_object = False
         self.cmd_vel = Twist()
-        self.cmd_vel.linear.x = 0.2
-        #self.cmd_vel.linear.y = 0.2
+        self.cmd_vel.linear.x = 0.3
+        self.cmd_vel.linear.y = 0.3
         self.cmd_vel.angular.z = 0.0
         self.start_time = 0
         self.cumulated_time = 0
         self.start_moving = False
         self.time_since_detection = 0
+        self.movement_time = 11.2
+
 
     def tirette_callback(self, msg):
         self.tirette = msg.data
@@ -41,12 +43,14 @@ class SequenceurHomologation(Node):
                 self.start_time = time.time()
                 self.start_moving = True
             self.cumulated_time = time.time() - self.start_time
-            if self.cumulated_time < 6 and self.time_since_detection > 0.5:
+            if self.cumulated_time < 100 and self.time_since_detection > 0.5 and self.movement_time > 0:
                 self.publisher_cmd_vel.publish(self.cmd_vel)
+                self.movement_time = self.movement_time - 0.1
             else:
                 self.publisher_cmd_vel.publish(Twist())
         else:
             self.cumulated_time = 0
+            self.movement_time = 11.2
             self.start_moving = False
         if self.time_since_detection<0.5 and self.start_moving:
             self.publisher_cmd_vel.publish(Twist())
