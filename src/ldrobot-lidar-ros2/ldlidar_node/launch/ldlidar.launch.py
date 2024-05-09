@@ -49,7 +49,7 @@ def generate_launch_description():
         package='ldlidar_node',
         executable='ldlidar_node',
         name=node_name,
-        namespace='',
+        namespace='lidar',
         output='screen',
         parameters=[
             # YAML files
