@@ -10,7 +10,7 @@ class MinimalSubscriber(Node):
         qos_profile = rclpy.qos.QoSProfile(depth=10, reliability=rclpy.qos.QoSReliabilityPolicy.BEST_EFFORT)
         self.subscription = self.create_subscription(
             LaserScan,
-            'ldlidar_node/scan',
+            '/lidar/ldlidar_node/scan',
             self.listener_callback,
             qos_profile)
         self.subscription  # prevent unused variable warning
@@ -25,8 +25,9 @@ class MinimalSubscriber(Node):
         # Check if any of the range values are within the specified distance
         for range_value in msg.ranges:
             if min_distance < range_value < max_distance:
+
                 # If an object is detected within the specified range, publish a message
-                self.get_logger().info("Object detected")
+                self.get_logger().info("Object detected at distance : %f" % range_value)
                 self.publisher.publish(String(data='Object detected'))
                 break
 
