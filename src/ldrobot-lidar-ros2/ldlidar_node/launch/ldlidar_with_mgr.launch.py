@@ -49,8 +49,7 @@ def generate_launch_description():
     lc_mgr_node = Node(
         package='nav2_lifecycle_manager',
         executable='lifecycle_manager',
-        name='lidar_lifecycle_manager',
-        namespace='lidar',
+        name='lidar/lidar_lifecycle_manager',
         output='screen',
         parameters=[
             # YAML files
