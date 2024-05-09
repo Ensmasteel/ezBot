@@ -23,7 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'match1 = src.match1:main'
+            'match1 = src.sequenceur_match1:main'
         ],
     },
 )
