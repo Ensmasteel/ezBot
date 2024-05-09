@@ -15,6 +15,17 @@
     <link name="ldlidar_base">
     </link>
 
+    
+    <joint name="ldlidar_link_node" type="fixed">
+        <parent link="base_laser"/>
+        <child link="ldlidar_link"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+
+    <link name="ldlidar_link">
+    </link>
+
     <link name="base_laser">
         <visual>
             <geometry>
