@@ -46,6 +46,8 @@ class SequenceurHomologation(Node):
             if self.cumulated_time < 100 and self.time_since_detection > 0.5 and self.movement_time > 0:
                 self.publisher_cmd_vel.publish(self.cmd_vel)
                 self.movement_time = self.movement_time - 0.1
+                self.get_logger().info("movement time: " + str(self.movement_time) + "s")
+
             else:
                 self.publisher_cmd_vel.publish(Twist())
         else:
