@@ -16,6 +16,9 @@ class MinimalSubscriber(Node):
         self.subscription  # prevent unused variable warning
 
         self.publisher = self.create_publisher(String, 'object_detected', 10)
+        self.runningCount = 0
+
+        self.runningCountLimit = 5
 
     def listener_callback(self, msg):
         # Define the range in which you want to detect objects
@@ -23,13 +26,16 @@ class MinimalSubscriber(Node):
         max_distance = 0.45 # meters
 
         # Check if any of the range values are within the specified distance
-        for range_value in msg.ranges:
-            if min_distance < range_value < max_distance:
-
-                # If an object is detected within the specified range, publish a message
-                self.get_logger().info("Object detected at distance : %f" % range_value)
+        for range_value, intensity_value in zip(msg.ranges, msg.intensities):
+            if min_distance < range_value < max_distance and intensity_value > 150:
+                # If an object is detected within the specified range and with intensity greater than 150, publish a message
+                self.runningCount += 1
+            else:
+                self.runningCount = self.runningCount - 1 if self.runningCount > 0 else 0            
+            if self.runningCount > 0:
+                self.get_logger().info("Object detected at distance: %f" % range_value)
                 self.publisher.publish(String(data='Object detected'))
-                break
+            
 
 def main(args=None):
     rclpy.init(args=args)
