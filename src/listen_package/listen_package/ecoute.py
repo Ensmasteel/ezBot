@@ -29,9 +29,9 @@ class MinimalSubscriber(Node):
         for range_value, intensity_value in zip(msg.ranges, msg.intensities):
             if min_distance < range_value < max_distance and intensity_value > 150:
                 # If an object is detected within the specified range and with intensity greater than 150, publish a message
-                self.runningCount += 1
+                self.runningCount = self.runningCount + 1 if self.runningCount < self.runningCountLimit else self.runningCountLimit
             else:
-                self.runningCount = self.runningCount - 1 if self.runningCount > 0 else 0            
+                self.runningCount = self.runningCount - 1 if self.runningCount > 0 else 0               
             if self.runningCount > 0:
                 self.get_logger().info("Object detected at distance: %f" % range_value)
                 self.publisher.publish(String(data='Object detected'))
