@@ -32,7 +32,7 @@ class MinimalSubscriber(Node):
                 self.runningCount = self.runningCount + 1 if self.runningCount < self.runningCountLimit else self.runningCountLimit
             else:
                 self.runningCount = self.runningCount - 1 if self.runningCount > 0 else 0               
-            if self.runningCount > 0:
+            if self.runningCount >= self.runningCountLimit:
                 self.get_logger().info("Object detected at distance: %f" % range_value)
                 self.publisher.publish(String(data='Object detected'))
             
