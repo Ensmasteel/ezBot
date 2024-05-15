@@ -110,7 +110,7 @@ controller_server:
       transform_tolerance: 0.1
       temperature: 0.3
       gamma: 0.015
-      motion_model: "DiffDrive"
+      motion_model: "Omni"
       visualize: true
       regenerate_noises: true
       TrajectoryVisualizer:
@@ -274,7 +274,7 @@ planner_server:
     planner_plugins: ["GridBased"]
     GridBased:
       plugin: "nav2_navfn_planner/NavfnPlanner"
-      tolerance: 0.5
+      tolerance: 0.05
       use_astar: false
       allow_unknown: true
 
@@ -330,10 +330,10 @@ velocity_smoother:
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
-    max_velocity: [0.5, 0.0, 2.0]
-    min_velocity: [-0.5, 0.0, -2.0]
-    max_accel: [2.5, 0.0, 3.2]
-    max_decel: [-2.5, 0.0, -3.2]
+    max_velocity: [0.5, 0.5, 2.0]
+    min_velocity: [-0.5, -0.5, -2.0]
+    max_accel: [2.5, 2.5, 3.2]
+    max_decel: [-2.5, -2.5, -3.2]
     odom_topic: "/omnidirectional_controller/odom"
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]
@@ -360,7 +360,7 @@ collision_monitor:
       time_before_collision: 1.2
       simulation_time_step: 0.1
       min_points: 6
-      visualize: False
+      visualize: True
       enabled: True
     observation_sources: ["scan"]
     scan:
