@@ -33,19 +33,21 @@ if(BUILD_TESTING)
 endif()
 
 install(
-  DIRECTORY config description launch worlds meshes media
+  DIRECTORY config description launch worlds meshes media maps
   DESTINATION share/${PROJECT_NAME}
 )
 
 install(
-  DIRECTORY media/
-  DESTINATION $ENV{HOME}/.gazebo/media/
+  DIRECTORY maps/
+  DESTINATION $ENV{HOME}/ros2maps/
 )
 
 install(
   DIRECTORY media/
   DESTINATION $ENV{HOME}/.gazebo/media/
 )
+
+
 
 install(PROGRAMS
   launch/camerapubsub.py

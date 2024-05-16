@@ -7,6 +7,7 @@
             <West>roue_gauche_joint</West>
             <South>roue_arriere_joint</South>
             <East>roue_droite_joint</East>
+            <commandTopic>/omnidirectional_controller/cmd_vel_unstamped</commandTopic>
             
             <wheel_separation>0.25</wheel_separation>
             <wheel_diameter>0.06</wheel_diameter>
