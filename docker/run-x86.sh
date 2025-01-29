@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# give permission to connect to X server
+xhost +
+
 docker run -it --rm \
 --network=host \
 --ipc=host --pid=host \
@@ -7,4 +10,5 @@ docker run -it --rm \
 --env GID=$(id -g) \
 -e DISPLAY=$DISPLAY \
 -v .:/ezbot \
-vincida/ezbot:testing-x86
+ezbot:testing-x86
+#vincida/ezbot:testing-x86
