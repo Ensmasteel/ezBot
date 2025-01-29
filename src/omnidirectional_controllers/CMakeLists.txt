@@ -29,6 +29,8 @@ set(THIS_PACKAGE_INCLUDE_DEPENDS
   tf2_msgs
   tf2_ros
   tf2
+  parameter_traits
+  generate_parameter_library
   diff_drive_controller
 )
 
