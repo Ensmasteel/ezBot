@@ -7,14 +7,15 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
-
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:jammy
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up ROS
-        uses: ros/tooling-setup-actions/setup-ros@v1
+        uses: ros-tooling/setup-ros@v0.7
         with:
           ros-distro: humble
 
