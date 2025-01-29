@@ -13,6 +13,9 @@ jobs:
         with:
           path: workspace
 
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y gpiod
+
       - name: Setup workspace
         uses: VincidaB/ros2-ws-action/setup@v1.0.1
         with:
