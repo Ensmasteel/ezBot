@@ -6,8 +6,7 @@ on:
 jobs:
   build-and-test:
     name: Build and Test
-    runs-on: ubuntu-latest
-    container: ubuntu:jammy
+    runs-on: Ubuntu 22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4.0.0
