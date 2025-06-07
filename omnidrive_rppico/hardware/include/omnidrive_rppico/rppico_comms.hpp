@@ -74,9 +74,16 @@ public:
         std::cerr << "The ReadByte() call has timed out." << std::endl ;
     }
     */
+    
+    std::cout << "Sent: " << msg_to_send << " Recv: " << response << std::endl;
+
     if (print_output)
     {
-      std::cout << "Sent: " << msg_to_send << " Recv: " << response << std::endl;
+      // std::cout << "Sent: " << msg_to_send << " Recv: " << response << std::endl;
+
+      // ros2 logger
+      RCLCPP_INFO(rclcpp::get_logger("OmniDriveRpPicoHardware"),
+      "Sent : %s",  msg_to_send.c_str());
     }
     
 
@@ -110,7 +117,7 @@ public:
   {
     std::stringstream ss;
     ss << "m " << val_1 << " " << val_2 << " " << val_3 << " " << val_4 << "\r";
-    send_msg(ss.str());
+    send_msg(ss.str(), true);
     }
 
   void set_pid_values(int k_p, int k_d, int k_i, int k_o)

@@ -7,7 +7,8 @@ controller_manager:
       type: joint_state_broadcaster/JointStateBroadcaster
 
     omnidirectional_controller:
-      type: omnidirectional_controllers/OmnidirectionalController
+      # type: omnidirectional_controllers/OmnidirectionalController
+      type: omnidirectional_controllers/OmnidirectionalController3
 
     actuator_controller:
       type: position_controllers/JointGroupPositionController
@@ -20,9 +21,9 @@ omnidirectional_controller:
       - roue_avant_joint
       - roue_gauche_joint
       - roue_arriere_joint
-      - roue_droite_joint
+      # - roue_droite_joint
 
-    robot_radius: 0.175
+    robot_radius: 0.142
     wheel_radius: 0.03
 
     publish_rate: 30.0
@@ -47,8 +48,8 @@ omnidirectional_controller:
     linear_min_acceleration: -2.0
 
     angular_has_acceleration_limits: true
-    angular_max_acceleration: 2.0
-    angular_min_acceleration: -2.0
+    angular_max_acceleration: 10.0
+    angular_min_acceleration: -10.0
 
 
 actuator_controller:
