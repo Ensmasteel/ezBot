@@ -1,0 +1,66 @@
+# GitHub Pages Configuration
+# This file tells GitHub Pages how to build and serve your site
+
+# Site settings
+title: "EzBot Robotics Team"
+description: "Building the future, one robot at a time"
+url: ""  # Will be automatically set by GitHub Pages
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - .gitignore
+
+# Include files
+include:
+  - _pages
+
+# Collections (for future use)
+collections:
+  projects:
+    output: true
+    permalink: /:collection/:name/
+  team:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+  - scope:
+      path: ""
+      type: "team"
+    values:
+      layout: "team-member"
+
+# SEO settings
+author: "EzBot Robotics Team"
+twitter_username: ""  # Add your Twitter handle
+github_username: ""   # Add your GitHub username
+
+# Google Analytics (optional)
+# google_analytics: ""  # Add your tracking ID
